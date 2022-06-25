@@ -1,7 +1,8 @@
 import { extendTheme } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
+import { withProse } from '@nikolovlazar/chakra-ui-prose'
 
-const fonts = { mono: `'Menlo', monospace` }
+const fonts = { mono: `'Domaine','Menlo', monospace` }
 
 const breakpoints = createBreakpoints({
   sm: '40em',
@@ -35,6 +36,6 @@ const theme = extendTheme({
   },
   fonts,
   breakpoints,
-})
+}, withProse())
 
 export default theme

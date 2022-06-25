@@ -1,13 +1,15 @@
-import { Stack, StackProps } from '@chakra-ui/react'
+import { Container, Stack, StackProps } from "@chakra-ui/react"
 
 export const Main = (props: StackProps) => (
-  <Stack
-    spacing="1.5rem"
-    width="100%"
-    maxWidth="48rem"
-    mt="-45vh"
-    pt="8rem"
-    px="1rem"
-    {...props}
-  />
+  <Container maxW='4xl'>
+    <Stack
+      spacing="1.5rem"
+      width="100%"
+      // maxWidth="60rem"
+      // mt="-45vh"
+      pt="3rem"
+      px="1rem"
+      {...props}
+    />
+  </Container>
 )

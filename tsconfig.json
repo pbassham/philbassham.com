@@ -12,8 +12,23 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": "./src", // This must be specified if "paths" is.
+    "paths": {
+      "@public/*": ["../public/*"],
+      "@content/*": ["../content/*"],
+      "@components/*": ["components/*"],
+      "@context/*": ["context/*"],
+      "@theme/*": ["theme/*"],
+      "@pages/*": ["pages/*"],
+      "@lib/*": ["lib/*"],
+      "@root/*": ["../*"],
+      "@assets/*":["../../public/assets/*"]
+      // "@typings/*": ["/types.ts"],
+      // "@config/*": ["/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "content"]
 }
