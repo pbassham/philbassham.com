@@ -13,7 +13,7 @@
     "@emotion/styled": "^11.9.0",
     "@nikolovlazar/chakra-ui-prose": "^1.2.1",
     "date-fns": "^2.28.0",
-    "framer-motion": "^6.3.0",
+    "framer-motion": "^7.6.19",
     "gray-matter": "^4.0.3",
     "next": "latest",
     "react": "^18.2.0",
