@@ -1,14 +1,17 @@
 ---
-title: 'GHEY: A Gmail Filter Management App'
-subTitle: 'Personal Project'
-excerpt: 'Full-featured email client (web-based) for Gmail that provides streamlined interface for easily managing Gmail filters and rules. Easily screen out senders that you dont want to hear from using the native power of Gmail filter rules.'
-coverImage: '/assets/gheyshots.png'
-date: '2020-03-16T05:35:07.322Z'
+title: "MissionBase: CRM for Donor/Financial Management"
+subTitle: MissionBase
+excerpt: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Praesent elementum
+  facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan
+  sit amet nulla facilities morbi tempus.
+date: 2020-08-13
+coverImage: /assets/missionbase.png
 author:
-  name: JJ Kasper
-  picture: '/assets/blog/authors/jj.jpeg'
+  name: Philip Bassham
+  picture: /assets/philip-small.jpeg
 ogImage:
-  url: '/assets/gheyshots.png'
+  url: /assets/missionbase.png
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.

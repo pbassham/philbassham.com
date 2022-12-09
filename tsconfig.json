@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -20,33 +16,16 @@
     "incremental": true,
     "baseUrl": "./src", // This must be specified if "paths" is.
     "paths": {
-      "@public/*": [
-        "../public/*"
-      ],
-      "@content/*": [
-        "../content/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@context/*": [
-        "context/*"
-      ],
-      "@theme/*": [
-        "theme/*"
-      ],
-      "@pages/*": [
-        "pages/*"
-      ],
-      "@lib/*": [
-        "lib/*"
-      ],
-      "@root/*": [
-        "../*"
-      ],
-      "@assets/*": [
-        "../../public/assets/*"
-      ]
+      "@public/*": ["../public/*"],
+      "@content/*": ["../content/*"],
+      "@config/*": ["../config/*"],
+      "@components/*": ["components/*"],
+      "@context/*": ["context/*"],
+      "@theme/*": ["theme/*"],
+      "@pages/*": ["pages/*"],
+      "@lib/*": ["lib/*"],
+      "@root/*": ["../*"],
+      "@assets/*": ["../../public/assets/*"]
       // "@typings/*": ["/types.ts"],
       // "@config/*": ["/*"]
     },
@@ -56,15 +35,6 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "next.config.js",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "content"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "content"]
 }

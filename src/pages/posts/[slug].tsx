@@ -10,7 +10,7 @@ import { getBySlug, getAllPosts, getAllPages } from "@lib/api"
 import Head from "next/head"
 // import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from "@lib/markdownToHtml"
-import { PostType } from "../types"
+import { PostType } from "../../types"
 import { Text } from "@chakra-ui/react"
 type Props = {
   post: PostType
@@ -53,7 +53,7 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-  const post = getBySlug("page", params.slug, ["title", "subTitle", "date", "slug", "author", "content", "ogImage", "coverImage"])
+  const post = getBySlug("post", params.slug, ["title", "subTitle", "date", "slug", "author", "content", "ogImage", "coverImage"])
   const content = await markdownToHtml(post.content || "")
 
   return {
@@ -67,11 +67,11 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  // const posts = getAllPosts(["slug"])
-  const pages = getAllPages(["slug"])
-  // const all = [...posts, ...pages]
+  const posts = getAllPosts(["slug"])
+//   const pages = getAllPages(["slug"])
+//   const all = [...posts, ...pages]
   return {
-    paths: pages.map((post) => {
+    paths: posts.map((post) => {
       return {
         params: {
           slug: post.slug,

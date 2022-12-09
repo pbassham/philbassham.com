@@ -20,7 +20,7 @@ const PostList = (props) => {
         morePosts.map((post: PostType) => {
           if (post.slug === "about") return
           return (
-            <Link href={post.slug}>
+            <Link href={`posts/${post.slug}`}>
               <Box pt={8} role="group">
                 {post.coverImage && (
                   <Image

@@ -1,0 +1,24 @@
+{
+  "authors": [{
+    "slug": "philip",
+    "name": "Philip"
+  }],
+  "categories": [
+    {
+      "name": "Work",
+      "slug": "work",
+      "description": "",
+      "hint": "Work things"
+    }
+  ],
+  "tags": [
+    {
+      "slug": "star",
+      "name": "Starred"
+    },
+    {
+      "slug": "new",
+      "name": "New"
+    }
+  ]
+}
