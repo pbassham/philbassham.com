@@ -39,7 +39,7 @@ export default {
     name: "github",
     repo: "pbassham/philbassham.com",
     identity_url: "https://golden-manatee-569b12.netlify.app/.netlify/identity",
-    gateway_url: "https://golden-manatee-569b12.netlify.app/.netlify/git",
+    // gateway_url: "https://golden-manatee-569b12.netlify.app/.netlify/git",
     branch: branch, //"master"
   },
   //   load_config_file: false,
