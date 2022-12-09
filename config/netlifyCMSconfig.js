@@ -1,4 +1,4 @@
-let branch = "master"
+let branch = "main"
 let publish = false
 // import { pages } from "@root/cache/data"
 import siteConfig from "@config/meta"
