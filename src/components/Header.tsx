@@ -6,7 +6,7 @@ import { DarkModeSwitch } from "./DarkModeSwitch"
 const links = [
   {
     title: "Projects",
-    url: "/hello-world",
+    url: "/projects",
   },
   {
     title: "About",

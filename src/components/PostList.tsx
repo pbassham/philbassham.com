@@ -7,7 +7,7 @@ import { PostType } from "types"
 // import philipSmall from '../../public/assets/philip-small.jpeg'
 // import philipSmall from "@assets/philip-small.jpeg"
 
-const PostList = (props) => {
+const PostList = (props: { allPosts: PostType[] }) => {
   const { allPosts } = props
   //   const heroPost = allPosts[0]
   //   const morePosts = allPosts.slice(1)
@@ -54,7 +54,7 @@ const PostList = (props) => {
                     //   py={10}
                     _groupHover={{ color: "pink.500" }}
                   >
-                    {post.subTitle}
+                    {post.subTitle} {post.tags}
                   </Text>
                   <Text
                     //   fontSize={""}

@@ -20,4 +20,5 @@ export type FrontMatter = {
     url: string
   }
   content: string
+  tags: string[]
 }
