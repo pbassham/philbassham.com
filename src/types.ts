@@ -1,5 +1,15 @@
-export type PostType = {
+export interface PostType extends FrontMatter {
+  raw: string
   slug: string
+  fullPath: string
+}
+export type Author = {
+  name: string
+  picture: string
+}
+export type ContentType = "pages" | "posts"
+
+export type FrontMatter = {
   title: string
   subTitle: string
   date: string
@@ -10,8 +20,4 @@ export type PostType = {
     url: string
   }
   content: string
-}
-export type Author = {
-  name: string
-  picture: string
 }

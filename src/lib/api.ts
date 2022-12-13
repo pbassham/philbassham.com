@@ -3,67 +3,49 @@ import { join } from "path"
 import yaml from "js-yaml"
 import matter from "gray-matter"
 import { parseISO } from "date-fns"
+import { ContentType, FrontMatter, PostType } from "types"
 
-const postsDirectory = join(process.cwd(), "content", "posts")
-const pagesDirectory = join(process.cwd(), "content", "pages")
-
-export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory)
+export function getBySlug(type: ContentType, slug: string) {
+  const posts = getContent(type)
+  return posts.filter((post) => post.slug === slug)[0]
 }
-export function getPageSlugs() {
-  return fs.readdirSync(pagesDirectory)
-}
+// export function getCategory(type: ContentType, category: string) {
+//   const posts = getContent({
+//     type,
+//   })
+//   const post = posts.filter((post) => post.category === category)[0]
+//   return post
+// }
 
-type Items = {
-  [key: string]: string
-}
-export function getBySlug(type: "post" | "page", slug: string, fields: string[] = []) {
-  const directory = type === "post" ? postsDirectory : pagesDirectory
-  const realSlug = slug.replace(/\.md$/, "")
-  const fullPath = join(directory, `${realSlug}.md`)
-  const fileContents = fs.readFileSync(fullPath, "utf8")
-  const { data, content } = matter(fileContents, {
-    engines: { yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object },
-  })
-
-  const items: Items = {}
-
-  // Ensure only the minimal needed data is exposed
-  fields.forEach((field) => {
-    if (field === "slug") {
-      items[field] = realSlug
-    }
-    if (field === "content") {
-      items[field] = content
-    }
-
-    if (typeof data[field] !== "undefined") {
-      items[field] = data[field]
-    }
-  })
-
-  return items
-}
-
-export function getAllPosts(fields: string[] = []) {
-  const slugs = getPostSlugs()
-  const posts = slugs
-    .map((slug) => getBySlug("post", slug, fields))
+export function getContent(type: ContentType): PostType[] {
+  // const { type } = props
+  // let path = type
+  // if (slug) path += `/${slug}`
+  const directory = join(process.cwd(), "content", type)
+  const slugs = fs.readdirSync(directory)
+  const content = slugs
+    .map((slug) => {
+      // const fullPath = join(directory, `${realSlug}.md`)
+      const fullPath = join(directory, slug)
+      const fileContents = fs.readFileSync(fullPath, "utf8")
+      const { data, content } = parseMarkdown(fileContents)
+      return {
+        ...(data as FrontMatter),
+        raw: fileContents,
+        content,
+        fullPath,
+        slug: slug.replace(/\.md$/, ""),
+      } as PostType
+    })
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
-    // .sort((post1, post2) => {
-    //   return parseISO(post1.date).getTime() > parseISO(post2.date).getTime() ? -1 : 1
-    // })
-  // return post1.date > parseISO(post2.date).getTime() ? -1 : 1)})
-  return posts
+
+  return content
 }
 
-export function getAllPages(fields: string[] = []) {
-  const slugs = getPageSlugs()
-  const pages = slugs
-    .map((slug) => getBySlug("page", slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (parseISO(post1.date).getTime() > parseISO(post2.date).getTime() ? -1 : 1))
-  // return parseISO(b.date).getTime() - parseISO(a.date).getTime()
-  return pages
+/** Gets FRONTMATTER for SINGLE MDX post or page */
+const parseMarkdown = (fileContents: string): matter.GrayMatterFile<string> => {
+  return matter(fileContents, {
+    engines: { yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object },
+  })
 }

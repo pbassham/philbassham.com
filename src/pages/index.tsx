@@ -1,7 +1,7 @@
 import { Hero } from "@components/Hero"
 import Layout from "@components/Layout"
 import PostList from "@components/PostList"
-import { getAllPosts } from "@lib/api"
+import { getContent } from "@lib/api"
 
 const Index = (props) => {
   return (
@@ -15,7 +15,8 @@ const Index = (props) => {
 export default Index
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts(["title","subTitle", "date", "slug", "author", "coverImage", "excerpt"])
+  // const allPosts = getAllPosts(["title","subTitle", "date", "slug", "author", "coverImage", "excerpt"])
+  const allPosts = getContent("posts")
 
   return {
     props: { allPosts },
