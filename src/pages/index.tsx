@@ -1,7 +1,7 @@
 import { Hero } from "@components/Hero"
 import Layout from "@components/Layout"
 import PostList from "@components/PostList"
-import { getByTag, getContent } from "@lib/api"
+import { getContent } from "@lib/api"
 
 const Index = (props) => {
   return (

@@ -12,6 +12,7 @@ author:
   picture: /assets/philip-small.jpeg
 ogImage:
   url: /assets/missionbase.png
+category: projects
 tags:
   - project
 ---

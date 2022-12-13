@@ -5,10 +5,11 @@ import PostBody from "@components/PostBody"
 import Header from "@components/Header"
 import PostHeader from "@components/PostHeader"
 import Layout from "@components/Layout"
-import { 
+import {
   getBySlug,
-  // getBySlug, getAllPosts, getAllPages, 
-  getContent } from "@lib/api"
+  // getBySlug, getAllPosts, getAllPages,
+  getContent,
+} from "@lib/api"
 // import PostTitle from '@components/post-title'
 import Head from "next/head"
 // import { CMS_NAME } from '../../lib/constants'
@@ -56,12 +57,8 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-  // const post = getBySlug("page", params.slug, ["title", "subTitle", "date", "slug", "author", "content", "ogImage", "coverImage"])
   const post = getBySlug("pages", params.slug)
-  // const posts = getContent({
-  //   type: "pages",
-  // })
-  // const post = posts.filter(post => post.slug === params.slug)[0]
+
   const content = await markdownToHtml(post.content || "")
 
   return {
@@ -75,10 +72,8 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  // const posts = getAllPosts(["slug"])
-  // const pages = getAllPages(["slug"])
   const pages = getContent("pages")
-  // const all = [...posts, ...pages]
+
   return {
     paths: pages.map((post) => {
       return {

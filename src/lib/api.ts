@@ -14,6 +14,11 @@ export function getByTag(type: ContentType, tag: string) {
   return posts.filter((post) => post.tags && post.tags.includes(tag))
   // const hasTag = post.tags && post.tags.includes(tag)
 }
+export function getByCat(type: ContentType, category: string) {
+  const posts = getContent(type)
+  return posts.filter((post) => post?.category === category)
+  // const hasTag = post.tags && post.tags.includes(tag)
+}
 
 // export function getCategory(type: ContentType, category: string) {
 //   const posts = getContent({
@@ -46,7 +51,7 @@ export function getContent(type: ContentType): PostType[] {
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
 
-  return content
+  return content ||[]
 }
 
 /** Gets FRONTMATTER for SINGLE MDX post or page */

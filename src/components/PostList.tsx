@@ -1,4 +1,4 @@
-import { Link as ChakraLink, Text, Code, List, ListIcon, ListItem, Divider, Box, Image, Container } from "@chakra-ui/react"
+import { Link as ChakraLink, Text, Code, List, ListIcon, ListItem, Divider, Box, Image, Container, Badge, Stack } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 // import Image from "next/image"
 
@@ -44,18 +44,29 @@ const PostList = (props: { allPosts: PostType[] }) => {
                   >
                     {post.title}
                   </Text>
-                  <Text
-                    // fontSize={""}
-                    as="em"
-                    cursor={"pointer"}
-                    //   fontWeight="bold"
-                    // fontFamily={"mono"}
-                    // fontStyle='italic'
-                    //   py={10}
-                    _groupHover={{ color: "pink.500" }}
-                  >
-                    {post.subTitle} {post.tags}
-                  </Text>
+                  <Stack direction="row">
+                    <Text
+                      // fontSize={""}
+                      as="em"
+                      cursor={"pointer"}
+                      //   fontWeight="bold"
+                      // fontFamily={"mono"}
+                      // fontStyle='italic'
+                      //   py={10}
+                      _groupHover={{ color: "pink.500" }}
+                    >
+                      {post.subTitle}
+                    </Text>
+                    <Box>
+                      {post.tags?.map((tag) => {
+                        return (
+                          <Badge variant="outline" colorScheme="purple">
+                            {tag}
+                          </Badge>
+                        )
+                      })}
+                    </Box>
+                  </Stack>
                   <Text
                     //   fontSize={""}
                     cursor={"pointer"}

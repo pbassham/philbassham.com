@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react"
 // import { createBreakpoints } from "@chakra-ui/theme-tools"
 import { withProse } from "@nikolovlazar/chakra-ui-prose"
 
-const fonts = { mono: `'Domaine','Menlo', monospace` }
+const fonts = { mono: `'Menlo','Domaine', monospace` }
 
 // const breakpoints = createBreakpoints({
 //   sm: "40em",

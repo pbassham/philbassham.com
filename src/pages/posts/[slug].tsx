@@ -53,7 +53,6 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-  // const post = getBySlug("post", params.slug, ["title", "subTitle", "date", "slug", "author", "content", "ogImage", "coverImage"])
   const post = getBySlug("posts", params.slug)
   const content = await markdownToHtml(post.content || "")
 
@@ -68,10 +67,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  // const posts = getAllPosts(["slug"])
   const posts = getContent("posts")
-  //   const pages = getAllPages(["slug"])
-  //   const all = [...posts, ...pages]
   return {
     paths: posts.map((post) => {
       return {

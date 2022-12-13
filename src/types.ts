@@ -21,4 +21,5 @@ export type FrontMatter = {
   }
   content: string
   tags: string[]
+  category: string
 }
