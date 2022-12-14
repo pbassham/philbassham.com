@@ -39,7 +39,7 @@ const Post = ({ post, morePosts, preview }: Props) => {
               <title>{post.title} | Philip Bassham</title>
               <meta property="og:image" content={post.ogImage.url} />
             </Head>
-            <PostHeader title={post.title} coverImage={post.coverImage} date={post.date} author={post.author} subTitle={post.subTitle} />
+            <PostHeader title={post.title} coverImage={post.coverImage} date={post.date} author={post.author} subTitle={post.subTitle} {...post} />
             <PostBody content={post.content} />
           </article>
         </>
