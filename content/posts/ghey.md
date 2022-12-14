@@ -8,13 +8,10 @@ ogImage:
 title: "GHEY: A Gmail Filter Management App"
 date: 2022-01-09
 coverImage: /assets/gheyshots.png
-author:
-  name: JJ Kasper
-  picture: /assets/blog/authors/jj.jpeg
+author: philip
 subTitle: Personal Project
 tags:
   - personal
-  - missionbase
 category: projects
 ---
 Gmail Filter Manager is a web app that makes it easy to manage Gmail filters. The app uses the Gmail API to replicate features of popular email clients, but with a focus on leveraging the native filter features already built into Gmail. With Gmail Filter Manager, users can easily manage their filters and create a more efficient and organized email experience.

@@ -23,3 +23,15 @@ export type FrontMatter = {
   tags: string[]
   category: string
 }
+
+export type Params = {
+  params: {
+    slug: string
+  }
+}
+
+export type PostProps = {
+  post: PostType
+  morePosts: PostType[]
+  preview?: boolean
+}
