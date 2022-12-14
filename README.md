@@ -1,3 +1,9 @@
+# Personal portfolio site
+- Category pages
+  - if there is no category for a post, it goes into the /posts/ url
+  - otherwise, there is an index for a category. Example /projects
+- Tags
+  - used to tag context of a project. personal, company, etc
 # Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and TypeScript
 
 This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with TypeScript.

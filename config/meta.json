@@ -1,13 +1,16 @@
 {
-  "authors": [{
-    "slug": "philip",
-    "name": "Philip"
-  }],
+  "authors": [
+    {
+      "slug": "philip",
+      "name": "Philip",
+      "introduction": "Hi"
+    }
+  ],
   "categories": [
     {
-      "name": "Work",
-      "slug": "work",
-      "description": "",
+      "name": "Projects",
+      "slug": "projects",
+      "description": "Description of project category",
       "hint": "Work things"
     }
   ],
@@ -17,8 +20,12 @@
       "name": "Starred"
     },
     {
-      "slug": "project",
-      "name": "Project"
+      "slug": "missionbase",
+      "name": "MissionBase"
+    },
+    {
+      "slug": "personal",
+      "name": "Personal Project"
     }
   ]
 }

@@ -11,7 +11,7 @@ export function getBySlug(type: ContentType, slug: string) {
 }
 export function getByTag(type: ContentType, tag: string) {
   const posts = getContent(type)
-  return posts.filter((post) => post.tags && post.tags.includes(tag))
+  return posts.filter((post) => post?.tags?.includes(tag))
   // const hasTag = post.tags && post.tags.includes(tag)
 }
 export function getByCat(type: ContentType, category: string) {

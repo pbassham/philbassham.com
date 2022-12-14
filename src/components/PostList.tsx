@@ -18,13 +18,14 @@ const PostList = (props: { allPosts: PostType[] }) => {
       {/* {heroPost && <Text fontWeight={"bold"}>{heroPost.title}</Text>} */}
       {morePosts?.length > 0 &&
         morePosts.map((post: PostType) => {
-          if (post.slug === "about") return
+          const { slug, category, coverImage, tags, title, subTitle, excerpt } = post
+          // if (post.slug === "about") return
           return (
-            <Link href={`posts/${post.slug}`}>
+            <Link href={`${category || "posts"}/${slug}`} key={slug}>
               <Box pt={8} role="group">
-                {post.coverImage && (
+                {coverImage && (
                   <Image
-                    src={post.coverImage}
+                    src={coverImage}
                     borderRadius={"md"}
                     cursor="pointer"
                     as={motion.img}
@@ -42,7 +43,7 @@ const PostList = (props: { allPosts: PostType[] }) => {
                     pt={10}
                     _groupHover={{ fontWeight: "semibold", color: "pink.500" }}
                   >
-                    {post.title}
+                    {title}
                   </Text>
                   <Stack direction="row">
                     <Text
@@ -55,12 +56,12 @@ const PostList = (props: { allPosts: PostType[] }) => {
                       //   py={10}
                       _groupHover={{ color: "pink.500" }}
                     >
-                      {post.subTitle}
+                      {subTitle}
                     </Text>
                     <Box>
-                      {post.tags?.map((tag) => {
+                      {tags?.map((tag) => {
                         return (
-                          <Badge variant="outline" colorScheme="purple">
+                          <Badge variant="outline" colorScheme="purple" key={tag} mr={2}>
                             {tag}
                           </Badge>
                         )
@@ -76,7 +77,7 @@ const PostList = (props: { allPosts: PostType[] }) => {
                     pb={10}
                     //   _groupHover={{  color: "pink.500" }}
                   >
-                    {post.excerpt}
+                    {excerpt}
                   </Text>
                   <Divider />
                 </Container>

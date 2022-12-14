@@ -1,20 +1,20 @@
 ---
-title: "MissionBase: CRM for Donor/Financial Management"
-subTitle: MissionBase
 excerpt: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
   tempor incididunt ut labore et dolore magna aliqua. Praesent elementum
   facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan
   sit amet nulla facilities morbi tempus.
+ogImage:
+  url: /assets/missionbase.png
+title: "MissionBase: CRM for Donor/Financial Management"
 date: 2020-08-13
 coverImage: /assets/missionbase.png
 author:
   name: Philip Bassham
   picture: /assets/philip-small.jpeg
-ogImage:
-  url: /assets/missionbase.png
-category: projects
+subTitle: MissionBase
 tags:
-  - project
+  - missionbase
+category: projects
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
