@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 
 import Link from "next/link"
 import { PostType } from "types"
+import Tags from "./Tags"
 // import philipSmall from '../../public/assets/philip-small.jpeg'
 // import philipSmall from "@assets/philip-small.jpeg"
 
@@ -58,15 +59,7 @@ const PostList = (props: { allPosts: PostType[] }) => {
                     >
                       {subTitle}
                     </Text>
-                    <Box>
-                      {tags?.map((tag) => {
-                        return (
-                          <Badge variant="outline" colorScheme="purple" key={tag} mr={2}>
-                            {tag}
-                          </Badge>
-                        )
-                      })}
-                    </Box>
+                    <Tags tags={tags} />
                   </Stack>
                   <Text
                     //   fontSize={""}

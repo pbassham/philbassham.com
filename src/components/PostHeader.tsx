@@ -3,8 +3,9 @@ import DateFormatter from "@components/DateFormatter"
 import CoverImage from "@components/CoverImage"
 // import PostTitle from "./PostTitle"
 import { Author, PostType } from "../types"
-import { Avatar, Badge, Box, Heading } from "@chakra-ui/react"
+import { Avatar, Badge, Box, Heading, VStack } from "@chakra-ui/react"
 import Link from "next/link"
+import Tags from "./Tags"
 
 const PostHeader = ({ title, subTitle, coverImage, date, author, tags }: PostType) => {
   return (
@@ -15,32 +16,14 @@ const PostHeader = ({ title, subTitle, coverImage, date, author, tags }: PostTyp
       <Heading as="h3" fontSize={"xl"} textAlign={"center"} pb={10} fontFamily="mono">
         {subTitle}
       </Heading>
-      <Box>
-        {tags?.map((tag) => {
-          return (
-            <Link href={`/tag/${tag}`}>
-              <Badge variant="outline" colorScheme="purple" key={tag} mr={2}>
-                {tag}
-              </Badge>
-            </Link>
-          )
-        })}
-      </Box>
+      <VStack pb={10}>
+        <DateFormatter dateString={date} />
+        <Tags tags={tags} />
+      </VStack>
+      <CoverImage title={title} src={coverImage} />
+
       {/* <PostTitle>{title}</PostTitle> */}
-      {/* <div className="hidden md:block md:mb-12">
-        <Avatar name={author.name} src={author.picture} />
-      </div> */}
-      <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} src={coverImage} />
-      </div>
-      {/* <div className="max-w-2xl mx-auto"> */}
-      {/* <div className="block md:hidden mb-6">
-          <Avatar name={author.name} src={author.picture} />
-        </div> */}
-      {/* <div className="mb-6 text-lg">
-          <DateFormatter dateString={date} />
-        </div> */}
-      {/* </div> */}
+      {/* <Avatar name={author.name} src={author.picture} /> */}
     </>
   )
 }

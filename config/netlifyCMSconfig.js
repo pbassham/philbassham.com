@@ -146,7 +146,7 @@ export default {
           widget: "markdown",
           hint: `Add your content here.`,
         },
-        { name: "coverImage", label: "Cover Image", widget: "file" },
+        { name: "coverImage", label: "Cover Image", widget: "file", required: false },
         {
           name: "author",
           label: "author",
@@ -156,6 +156,7 @@ export default {
           search_fields: ["authors.*.name"],
           display_fields: ["authors.*.name"],
           value_field: "authors.*.slug",
+          required: false,
         },
         // {
         //   name: "slug",
