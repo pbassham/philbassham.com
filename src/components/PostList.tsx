@@ -22,7 +22,7 @@ const PostList = (props: { allPosts: PostType[] }) => {
           const { slug, category, coverImage, tags, title, subTitle, excerpt } = post
           // if (post.slug === "about") return
           return (
-            <Link href={`${category || "posts"}/${slug}`} key={slug}>
+            <Link href={`/${category || "posts"}/${slug}`} key={slug}>
               <Box pt={8} role="group">
                 {coverImage && (
                   <Image
