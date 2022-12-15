@@ -2,13 +2,14 @@ import { getBySlug, getContent } from "@lib/api"
 import markdownToHtml from "@lib/markdownToHtml"
 import { Params, PostType } from "../../types"
 import Post from "@components/Post"
+import { serialize } from "next-mdx-remote/serialize"
 
 export default Post
 
 export async function getStaticProps({ params }: Params) {
   const post = getBySlug("posts", params.slug)
-  const content = await markdownToHtml(post.content || "")
-
+  // const content = await markdownToHtml(post.content || "")
+  const content = await serialize(post.content)
   return {
     props: {
       post: {

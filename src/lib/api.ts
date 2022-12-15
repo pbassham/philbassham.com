@@ -4,6 +4,8 @@ import yaml from "js-yaml"
 import matter from "gray-matter"
 import { parseISO } from "date-fns"
 import { ContentType, FrontMatter, PostType } from "types"
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemoteSerializeResult } from "next-mdx-remote"
 
 export function getBySlug(type: ContentType, slug: string) {
   const posts = getContent(type)
@@ -32,6 +34,8 @@ export function getContent(type: ContentType): PostType[] {
       const fullPath = join(directory, slug)
       const fileContents = fs.readFileSync(fullPath, "utf8")
       const { data, content } = parseMarkdown(fileContents)
+      // const mdxSource = await serialize(content)
+      // @ts-ignore
       return {
         ...(data as FrontMatter),
         raw: fileContents,

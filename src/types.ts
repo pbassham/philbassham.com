@@ -1,3 +1,5 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote"
+
 export interface PostType extends FrontMatter {
   raw: string
   slug: string
@@ -19,7 +21,8 @@ export type FrontMatter = {
   ogImage: {
     url: string
   }
-  content: string
+  // content: string
+  content: MDXRemoteSerializeResult //| string
   tags: string[]
   category: string
 }

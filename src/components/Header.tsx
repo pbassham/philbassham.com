@@ -16,7 +16,7 @@ const links = [
 const Header = (props: StackProps) => (
   <HStack as="header" w="100%" maxWidth="5xl" px="1rem" py="2rem" {...props}>
     <Link href={"/"}>
-      <Text fontWeight={"bold"} fontSize="lg" fontStyle="" fontFamily={"mono"} cursor="pointer">
+      <Text fontWeight={"bold"} fontSize="xl" fontStyle="" fontFamily={"mono"} cursor="pointer">
         Philip Bassham
       </Text>
     </Link>

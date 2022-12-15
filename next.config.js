@@ -4,6 +4,9 @@ const NextConfig = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  compiler: {
+    styledComponents: true,
+  },
   experimental: {
     appDir: false,
   },

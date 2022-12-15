@@ -37,7 +37,7 @@ const PostList = (props: { allPosts: PostType[] }) => {
                 )}
                 <Container maxW={"90%"}>
                   <Text
-                    fontSize={"xl"}
+                    fontSize={"2xl"}
                     cursor={"pointer"}
                     fontWeight="bold"
                     fontFamily={"mono"}

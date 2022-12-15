@@ -13,7 +13,7 @@ const PostHeader = ({ title, subTitle, coverImage, date, author, tags }: PostTyp
       <Heading as="h1" textAlign={"center"} pb={3} fontFamily="mono">
         {title}
       </Heading>
-      <Heading as="h3" fontSize={"xl"} textAlign={"center"} pb={10} fontFamily="mono">
+      <Heading as="h3" fontSize={"2xl"} textAlign={"center"} pb={10} fontFamily="mono">
         {subTitle}
       </Heading>
       <VStack pb={10}>
