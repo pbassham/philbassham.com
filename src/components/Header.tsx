@@ -2,6 +2,7 @@ import { Flex, FlexProps, HStack, Spacer, StackProps, Text } from "@chakra-ui/re
 // import { motion } from "framer-motion"
 import Link from "next/link"
 import { DarkModeSwitch } from "./DarkModeSwitch"
+import config from '@root/config/config.json'
 
 const links = [
   {
@@ -17,7 +18,7 @@ const Header = (props: StackProps) => (
   <HStack as="header" w="100%" maxWidth="5xl" px="1rem" py="2rem" {...props}>
     <Link href={"/"}>
       <Text fontWeight={"bold"} fontSize="xl" fontStyle="" fontFamily={"mono"} cursor="pointer">
-        Philip Bassham
+        {config.site_title}
       </Text>
     </Link>
     <Spacer />

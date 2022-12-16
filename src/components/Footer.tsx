@@ -3,6 +3,7 @@ import { ButtonGroup, Container, IconButton, Stack, Text } from "@chakra-ui/reac
 import * as React from "react"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 // import { Logo } from './Logo'
+import config from "@root/config/config.json"
 
 export const Footer = (props: FlexProps) => (
   // <Flex as="footer" py="8rem" >
@@ -15,7 +16,7 @@ export const Footer = (props: FlexProps) => (
       <ButtonGroup variant="ghost">
         <IconButton
           as="a"
-          href="https://www.linkedin.com/in/pbassham"
+          href={`https://www.linkedin.com/in/${config.linkedin_account}`}
           target={"_blank"}
           aria-label="LinkedIn"
           _hover={{
@@ -24,10 +25,10 @@ export const Footer = (props: FlexProps) => (
           }}
           icon={<FaLinkedin fontSize="1.25rem" />}
         />
-        <IconButton as="a" href="https://github.com/pbassham" target="_blank" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
+        <IconButton as="a" href={`https://github.com/${config.github_account}`} target="_blank" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
         <IconButton
           as="a"
-          href="https://twitter.com/pbassham"
+          href={`https://twitter.com/${config.twitter_account}`}
           target="_blank"
           aria-label="Twitter"
           _hover={{

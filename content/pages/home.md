@@ -12,4 +12,4 @@ author:
 ogImage:
   url: /assets/philip-large.jpeg
 ---
-<Summary py={12}>I’m a product designer currently at [MissionBase](https://www.missionbase.com). My areas of focus include UX research, interface design, and design systems. Previously I've worked with world class design teams at Gofundme and Udacity.</Summary>
+<Summary py={12}>I’m a product manager currently at [MissionBase](https://www.missionbase.com). My areas of focus include UX research, interface design, and design systems. Previously I've worked with international teams while stationed in Thailand.</Summary>

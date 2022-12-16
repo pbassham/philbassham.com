@@ -1,20 +1,22 @@
-import { useRouter } from "next/router"
-import ErrorPage from "next/error"
-import PostBody from "@components/PostBody"
-import PostHeader from "@components/PostHeader"
-import Layout from "@components/Layout"
 // import PostTitle from '@components/post-title'
 import Head from "next/head"
-// import { CMS_NAME } from '../../lib/constants'
-import { FrontMatter, PostProps, PostType } from "../types"
-import { Text } from "@chakra-ui/react"
+import { PostType } from "../types"
+import config from "@root/config/config.json"
 
-const Meta = (props: PostType) => {
-  const { slug, title, ogImage } = props
+interface MetaProps extends PostType {
+  keywords?: string[]
+}
+const Meta = (props: MetaProps) => {
+  const { slug, title, ogImage, subTitle, excerpt, author, keywords } = props
+  const { site_title, site_description, site_keywords, base_url } = config
   return (
     <Head>
-      <title>{title} | Philip Bassham</title>
+      <title>{title ? [title, site_title].join(" | ") : site_title}</title>
+      <meta property="description" content={subTitle || excerpt || site_description}></meta>
       <meta property="og:image" content={ogImage?.url} />
+      <meta name="keywords" content={keywords ? keywords.join(",") : site_keywords.map((it) => it.keyword).join(",")} />
+      {author ? <meta name="author" content={author.name} /> : null}
+      <link rel="canonical" href={base_url + slug} />
     </Head>
   )
 }
