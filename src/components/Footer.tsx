@@ -1,4 +1,4 @@
-import { Center, Flex, FlexProps } from "@chakra-ui/react"
+import { Center, Divider, Flex, FlexProps } from "@chakra-ui/react"
 import { ButtonGroup, Container, IconButton, Stack, Text } from "@chakra-ui/react"
 import * as React from "react"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
@@ -9,6 +9,7 @@ export const Footer = (props: FlexProps) => (
 
   <Container as="footer" role="contentinfo" py={{ base: "12", md: "16" }}>
     {/* <Stack spacing={{ base: '4', md: '5' }}> */}
+    {/* <Divider /> */}
     <Center>
       {/* <Logo /> */}
       <ButtonGroup variant="ghost">

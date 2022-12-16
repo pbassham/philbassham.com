@@ -24,7 +24,7 @@ const Header = (props: StackProps) => (
     <HStack className="nav" spacing={5} pl={-1}>
       {links.map((link) => {
         return (
-          <Link href={link.url} key={link.url}>
+          <Link href={link.url} key={link.url} passHref legacyBehavior>
             <Text  fontFamily={"mono"} fontSize="sm" cursor={"pointer"} _hover={{ fontWeight: "semibold", color: "pink.500" }}>
               {link.title}
             </Text>

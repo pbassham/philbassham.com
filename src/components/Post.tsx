@@ -7,7 +7,8 @@ import { PostProps, PostType } from "../types"
 import { Text } from "@chakra-ui/react"
 import Meta from "./Meta"
 
-const Post = ({ post, morePosts, preview }: PostProps) => {
+const Post = (props: PostProps) => {
+  const { post } = props
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />

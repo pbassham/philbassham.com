@@ -1,6 +1,6 @@
-import { Flex, Heading } from "@chakra-ui/react"
-type Props = {
-  title?: string;
+import { Flex, FlexProps, Heading } from "@chakra-ui/react"
+interface Props extends FlexProps {
+  title?: string
 }
 export const Hero = (props: Props) => {
   const { title } = props
@@ -11,11 +11,12 @@ export const Hero = (props: Props) => {
       // height="100%"
       bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
       bgClip="text"
-      mb={14}
+      mb={10}
       // m='6vw'
+      {...props}
     >
       {/* <Heading fontSize="6vw">{title}</Heading> */}
-      <Heading as="h2">
+      <Heading as="h1" textAlign={"center"}>
         {title}
       </Heading>
     </Flex>

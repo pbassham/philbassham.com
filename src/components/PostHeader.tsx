@@ -6,17 +6,17 @@ import { Author, PostType } from "../types"
 import { Avatar, Badge, Box, Heading, VStack } from "@chakra-ui/react"
 import Link from "next/link"
 import Tags from "./Tags"
+import { Hero } from "./Hero"
 
 const PostHeader = ({ title, subTitle, coverImage, date, author, tags }: PostType) => {
   return (
     <>
-      <Heading as="h1" textAlign={"center"} pb={3} fontFamily="mono">
-        {title}
-      </Heading>
-      <Heading as="h3" fontSize={"2xl"} textAlign={"center"} pb={10} fontFamily="mono">
-        {subTitle}
-      </Heading>
       <VStack pb={10}>
+        <Hero title={title} mb={5} />
+
+        {/* <Heading as="h3" fontSize={"2xl"} textAlign={"center"}  fontFamily="mono">
+          {subTitle}
+        </Heading> */}
         <DateFormatter dateString={date} />
         <Tags tags={tags} />
       </VStack>

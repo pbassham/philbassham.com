@@ -35,6 +35,13 @@ export type Params = {
 
 export type PostProps = {
   post: PostType
-  morePosts: PostType[]
-  preview?: boolean
+  // morePosts: PostType[]
+  // preview?: boolean
+}
+
+export type DynamicProps = {
+  type: "post" | "page" | "category"
+  post: PostType
+  allPosts: PostType[]
+  category: {}
 }
