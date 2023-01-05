@@ -1,6 +1,6 @@
 name: New Post
 description: New Post or Page
-title: ""
+# title: ""
 labels: ["draft"]
 # assignees:
 #   - octocat
@@ -26,7 +26,7 @@ body:
 #       value: "A bug happened!"
     validations:
       required: true
-    - type:
+#     - type:
 #   - type: dropdown
 #     id: version
 #     attributes:
