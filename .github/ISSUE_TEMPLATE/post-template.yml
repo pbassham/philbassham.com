@@ -5,25 +5,33 @@ labels: ["draft"]
 # assignees:
 #   - octocat
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
-  - type: input
-    id: cover-image
-    attributes:
-      label: Cover Image
-      description: Link to an image. Drop below to upload and then copy to this field.
-      placeholder: ex. https://user-images.githubusercontent.com/390996/210841540-42b8c9d5-a81e-4491-9974-d0c5c5cbcee4.png
-    validations:
-      required: false
+#   - type: markdown
+#     attributes:
+#       value: |
+#         Thanks for taking the time to fill out this bug report!
+#   - type: input
+#     id: cover-image
+#     attributes:
+#       label: Cover Image
+#       description: Link to an image. Drop below to upload and then copy to this field.
+#       placeholder: ex. https://user-images.githubusercontent.com/390996/210841540-42b8c9d5-a81e-4491-9974-d0c5c5cbcee4.png
+#     validations:
+#       required: false
   - type: textarea
     id: post-content
     attributes:
       label: Content
       description: Write your post
       placeholder: Content goes here
-#       value: "A bug happened!"
+      value: |
+        ---
+        # subTitle: string
+        # date: string
+        # coverImage: string
+        # excerpt: string
+        ---
+        
+        Content goes here...
     validations:
       required: true
 #     - type:
