@@ -4,6 +4,14 @@
   - otherwise, there is an index for a category. Example /projects
 - Tags
   - used to tag context of a project. personal, company, etc
+
+# GITHUB CMS
+Uses Github Issues as CMS
+## Instructions
+ - https://giuseppegurgone.com/vercel-cloudflare-kv
+ - add env variables to vercel and local
+
+
 # Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and TypeScript
 
 This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with TypeScript.
