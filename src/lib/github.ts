@@ -71,7 +71,7 @@ export const getPosts = async () => {
     slug: slugify(is.title),
   }))
   const kvArray = issues.map((issue) => ({ key: issue.slug, value: issue.number.toString() }))
-  await updateKeys(kvArray)
+  await updateSlugs(kvArray)
   //   const slug = slugify(issue?.title||"")
   return issues
 }
@@ -79,8 +79,8 @@ export const getPosts = async () => {
 export const getPost = async (slug: string) => {
   if (slug === "site.webmanifest") return
   if (slug === "favicon.ico") return
-  const number = await getKey(slug)
-  if (!number) await getPosts()
+  const number = await getIssueBySlug(slug)
+  if (number === "Error") await getPosts()
   //   const posts = await getPosts()
   //   const number = posts.filter((post) => post.slug === slug)[0]?.number
   const f = 2
@@ -148,7 +148,7 @@ export interface KV {
   key: string
   value: string
 }
-export async function updateKeys(kvArray: KV[]) {
+export async function updateSlugs(kvArray: KV[]) {
   //   const body = kvArray //JSON.stringify(req.query.value)
   const accountID = "007dc0fad0df7af5af5aebb5ca7cbf18"
   const namespaceID = "6de583abb4c14a71b925fd188e35d16a"
@@ -171,7 +171,7 @@ export async function updateKeys(kvArray: KV[]) {
   // ...
 }
 
-export async function getKey(key): Promise<string> {
+export async function getIssueBySlug(key): Promise<string> {
   const accountID = "007dc0fad0df7af5af5aebb5ca7cbf18"
   const namespaceID = "6de583abb4c14a71b925fd188e35d16a"
   const options = {
@@ -191,5 +191,8 @@ export async function getKey(key): Promise<string> {
       console.log(response)
       return response
     })
-    .catch((err) => console.error(err))
+    .catch((err) => {
+      console.error(err)
+      return `Error`
+    })
 }
