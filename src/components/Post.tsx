@@ -10,9 +10,9 @@ import Meta from "./Meta"
 const Post = (props: PostProps) => {
   const { post } = props
   const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
-  }
+  // if (!router.isFallback && !post?.slug) {
+  //   return <ErrorPage statusCode={404} />
+  // }
   return (
     <Layout>
       {router.isFallback ? (

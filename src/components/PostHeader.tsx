@@ -17,7 +17,7 @@ const PostHeader = ({ title, subTitle, coverImage, date, author, tags }: PostTyp
         {/* <Heading as="h3" fontSize={"2xl"} textAlign={"center"}  fontFamily="mono">
           {subTitle}
         </Heading> */}
-        <DateFormatter dateString={date} />
+        {/* <DateFormatter dateString={date} /> */}
         <Tags tags={tags} />
       </VStack>
       <CoverImage title={title} src={coverImage} />
