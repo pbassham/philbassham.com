@@ -111,14 +111,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       },
     }
   })
-  // :
-  // [
-  //   {
-  //     params: {
-  //       slug: ["0"],
-  //     },
-  //   }
-  // ]
 
   return {
     paths: paths,

@@ -3,8 +3,6 @@ import type { GraphQlQueryResponseData } from "@octokit/graphql"
 import matter from "gray-matter"
 import yaml from "js-yaml"
 import { FrontMatter, PostType } from "types"
-import { serialize } from "next-mdx-remote/serialize"
-import { is } from "date-fns/locale"
 
 const { GITHUB_TOKEN, CLOUDFLARE_TOKEN } = process.env
 
@@ -82,6 +80,7 @@ export const getPost = async (slug: string) => {
   if (slug === "site.webmanifest") return
   if (slug === "favicon.ico") return
   const number = await getKey(slug)
+  if (!number) await getPosts()
   //   const posts = await getPosts()
   //   const number = posts.filter((post) => post.slug === slug)[0]?.number
   const f = 2
