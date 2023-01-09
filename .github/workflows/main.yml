@@ -10,12 +10,12 @@ jobs:
       # you must check out the repository
       # - name: Checkout
       #   uses: actions/checkout@v3
-      - name: Hello world action step
+      - name: Slugify Title
         uses: pbassham/slugify-issue@main # Uses an action in the root directory
         id: hello
         with:
-          who-to-greet: "Mona the Octocat"
-          text: "Mona the Octocat Slug"
+          # who-to-greet: "Mona the Octocat"
+          # text: "Mona the Octocat Slug"
           cloudflare_account_id: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
           cloudflare_namespace_id: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
           cloudflare_token: ${{secrets.CLOUDFLARE_TOKEN}}
