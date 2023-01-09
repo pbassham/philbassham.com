@@ -40,7 +40,7 @@ jobs:
       # - name: Check outputs
       #   run: echo "Outputs issue_number is ${{ steps.get-issue.outputs.issue-number }} and title is ${{ steps.get-issue.outputs.issue-title }}"
       - name: Check outputs
-        run: echo "Outputs issue_number is ${{ steps.update-slug.outputs.issue_number }} and title is ${{ steps.get-issue.outputs.slug }}"
+        run: echo "Outputs issue_number is ${{ steps.update-slug.outputs.issue_number }} and title is ${{ steps.update-slug.outputs.slug }}"
       # - name: Link check (critical, all files)
       #   run: |
       #     ./.github/scripts/slugify.js \
