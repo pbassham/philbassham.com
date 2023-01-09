@@ -1,4 +1,5 @@
 function slugify(text) {
+  console.log(text)
   return text
     .toString() // Cast to string (optional)
     .normalize("NFKD") // The normalize() using NFKD method returns the Unicode Normalization Form of a given string.
