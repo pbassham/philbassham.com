@@ -16,9 +16,9 @@ jobs:
         with:
           who-to-greet: "Mona the Octocat"
           text: "Mona the Octocat Slug"
-          cloudflare_account_id: {{secrets.CLOUDFLARE_ACCOUNT_ID}}
-          cloudflare_namespace_id: {{secrets.CLOUDFLARE_NAMESPACE_ID}}
-          cloudflare_token: {{secrets.CLOUDFLARE_TOKEN}}
+          cloudflare_account_id: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
+          cloudflare_namespace_id: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
+          cloudflare_token: ${{secrets.CLOUDFLARE_TOKEN}}
 
       # # Use the output from the `hello` step
       # - name: Get the output time
