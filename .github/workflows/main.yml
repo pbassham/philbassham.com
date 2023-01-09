@@ -3,9 +3,26 @@ on:
     types: [opened, edited]
 
 jobs:
-  add-assigness:
+  update-cloudflare-slug:
     runs-on: ubuntu-latest
     steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      - name: Update Cloudflare Slug
+        uses: pbassham/slugify-issue@main # Uses an action in the root directory
+        id: update-slug
+        with:
+          # who-to-greet: "Mona the Octocat"
+          # text: "Mona the Octocat Slug"
+          cloudflare_account_id: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
+          cloudflare_namespace_id: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
+          cloudflare_token: ${{secrets.CLOUDFLARE_TOKEN}}
+
+      # # Use the output from the `hello` step
+      # - name: Get the output time
+      #   run: echo "The time was ${{ steps.hello.outputs.time }}"
       #      - name: Add assigness
       #       uses: actions-cool/issues-helper@v3
       #      with:
@@ -14,31 +31,33 @@ jobs:
       #     issue-number: ${{ github.event.issue.number }}
       #    assignees: 'xxx' or 'xx1,xx2'
       #   random-to: 1
-      - name: Get Issue
-        id: get-issue
-        uses: actions-cool/issues-helper@v3
-        with:
-          actions: "get-issue"
-          token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Get Issue
+      #   id: get-issue
+      #   uses: actions-cool/issues-helper@v3
+      #   with:
+      #     actions: "get-issue"
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Check outputs
+      #   run: echo "Outputs issue_number is ${{ steps.get-issue.outputs.issue-number }} and title is ${{ steps.get-issue.outputs.issue-title }}"
       - name: Check outputs
-        run: echo "Outputs issue_number is ${{ steps.get-issue.outputs.issue-number }} and title is ${{ steps.get-issue.outputs.issue-title }}"
-      - name: Link check (critical, all files)
-        run: |
-          ./scripts/slugify.js \
-            --${{ steps.get-issue.outputs.issue-title }}
+        run: echo "Outputs issue_number is ${{ steps.update-slug.outputs.issue_number }} and title is ${{ steps.update-slug.outputs.slug }}"
+      # - name: Link check (critical, all files)
+      #   run: |
+      #     ./.github/scripts/slugify.js \
+      #       --${{ steps.get-issue.outputs.issue-title }}
       # - name: Value
       #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
-      # - name: cloudflare-kv-action
-      #   uses: zentered/cloudflare-kv-action@v1.0.0
-      #   id: cloudflare_kv
-      #   env:
-      #     CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
-      #     CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
-      #     CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      #   with:
-      #     namespace_identifier: "123"
-      #     key_name: "hello"
-      #     value: "world"
-      #     expiration_ttl: 120
+      - name: cloudflare-kv-action
+        uses: zentered/cloudflare-kv-action@v1.0.0
+        id: cloudflare_kv
+        env:
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_TOKEN }}
+          # CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        with:
+          namespace_identifier: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
+          key_name: ${{ steps.update-slug.outputs.slug }}
+          value: ${{ steps.update-slug.outputs.issue_number }}
+          expiration_ttl: 120
       # - name: Value
       #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"

@@ -70,8 +70,8 @@ export const getPosts = async () => {
     ...is,
     slug: slugify(is.title),
   }))
-  const kvArray = issues.map((issue) => ({ key: issue.slug, value: issue.number.toString() }))
-  await updateSlugs(kvArray)
+  // const kvArray = issues.map((issue) => ({ key: issue.slug, value: issue.number.toString() }))
+  // await updateSlugs(kvArray)
   //   const slug = slugify(issue?.title||"")
   return issues
 }
