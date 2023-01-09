@@ -58,7 +58,6 @@ jobs:
           namespace_identifier: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
           key_name: ${{ steps.update-slug.outputs.slug }}
           value: '${{ steps.update-slug.outputs.issue_number }}'
-          expiration_ttl: 120
       - name: New Value
         run: echo "${{ steps.cloudflare_kv.outputs.value }}"
       - name: Revalidate new link via curl
