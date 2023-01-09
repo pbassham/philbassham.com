@@ -59,8 +59,9 @@ jobs:
           key_name: ${{ steps.update-slug.outputs.slug }}
           value: ${{ steps.update-slug.outputs.issue_number }}
           expiration_ttl: 120
+      - name: New Value
+        run: echo "${{ steps.cloudflare_kv.outputs.value }}"
       - name: Revalidate new link via curl
         run: |
           curl -X GET "https://www.philbassham.com/api/revalidate?secret${{secrets.REVALIDATE_TOKEN}}&slug=${{steps.update-slug.outputs.slug}}"
-      # - name: Value
-      #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
+      
