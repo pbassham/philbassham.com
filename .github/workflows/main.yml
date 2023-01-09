@@ -47,17 +47,17 @@ jobs:
       #       --${{ steps.get-issue.outputs.issue-title }}
       # - name: Value
       #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
-      # - name: cloudflare-kv-action
-      #   uses: zentered/cloudflare-kv-action@v1.0.0
-      #   id: cloudflare_kv
-      #   env:
-      #     CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
-      #     CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
-      #     CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      #   with:
-      #     namespace_identifier: "123"
-      #     key_name: "hello"
-      #     value: "world"
-      #     expiration_ttl: 120
+      - name: cloudflare-kv-action
+        uses: zentered/cloudflare-kv-action@v1.0.0
+        id: cloudflare_kv
+        env:
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_TOKEN }}
+          # CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        with:
+          namespace_identifier: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
+          key_name: ${{ steps.update-slug.outputs.slug }}
+          value: ${{ steps.update-slug.outputs.issue_number }}
+          expiration_ttl: 120
       # - name: Value
       #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
