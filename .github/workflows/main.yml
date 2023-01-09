@@ -15,21 +15,30 @@ jobs:
       #    assignees: 'xxx' or 'xx1,xx2'
       #   random-to: 1
       - name: Get Issue
+        id: get-issue
         uses: actions-cool/issues-helper@v3
         with:
           actions: "get-issue"
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: cloudflare-kv-action
-        uses: zentered/cloudflare-kv-action@v1.0.0
-        id: cloudflare_kv
-        env:
-          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
-          CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        with:
-          namespace_identifier: "123"
-          key_name: "hello"
-          value: "world"
-          expiration_ttl: 120
-      - name: Value
-        run: echo "${{ steps.cloudflare_kv.outputs.value }}"
+      - name: Check outputs
+        run: echo "Outputs issue_number is ${{ steps.get-issue.outputs.issue-number }} and title is ${{ steps.get-issue.outputs.issue-title }}"
+      - name: Link check (critical, all files)
+        run: |
+          ./scripts/slugify.js \
+            --${{ steps.get-issue.outputs.issue-title }}
+      # - name: Value
+      #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
+      # - name: cloudflare-kv-action
+      #   uses: zentered/cloudflare-kv-action@v1.0.0
+      #   id: cloudflare_kv
+      #   env:
+      #     CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+      #     CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
+      #     CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      #   with:
+      #     namespace_identifier: "123"
+      #     key_name: "hello"
+      #     value: "world"
+      #     expiration_ttl: 120
+      # - name: Value
+      #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
