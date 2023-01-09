@@ -3,17 +3,17 @@ import type { GraphQlQueryResponseData } from "@octokit/graphql"
 import matter from "gray-matter"
 import yaml from "js-yaml"
 import { FrontMatter, PostType } from "types"
-
-const { GITHUB_TOKEN, CLOUDFLARE_TOKEN } = process.env
-
-const repo = "philbassham.com"
-const owner = "pbassham"
+import { getIssueBySlug, updateSlugs } from "./cloudflareKv"
+import { REPO, GITHUB_USERNAME } from "@root/githubCMS.config"
+import generateCustomFieldsFragment from "./customFields"
+const { GITHUB_TOKEN } = process.env
 
 const request = graphql.defaults({
   headers: {
     authorization: `token ${GITHUB_TOKEN}`,
   },
 })
+let customFieldsFragment = generateCustomFieldsFragment()
 
 function slugify(text) {
   return text
@@ -56,7 +56,7 @@ export const getPosts = async () => {
 
   const data: GraphQlQueryResponseData = await request(
     `{
-    repository(name: "${repo}", owner: "${owner}") {
+    repository(name: "${REPO}", owner: "${GITHUB_USERNAME}") {
       issues(first: 50) {
         nodes {
           ${issueFragment}
@@ -75,6 +75,7 @@ export const getPosts = async () => {
   //   const slug = slugify(issue?.title||"")
   return issues
 }
+
 // export const getPost = async (number) => {
 export const getPost = async (slug: string) => {
   if (slug === "site.webmanifest") return
@@ -87,7 +88,7 @@ export const getPost = async (slug: string) => {
 
   const data: GraphQlQueryResponseData = await request(
     `query getPost($number: Int!){
-        repository(name: "${repo}", owner: "${owner}") {
+        repository(name: "${REPO}", owner: "${GITHUB_USERNAME}") {
         issue(number: $number) {
             ${issueFragment}
         }
@@ -123,76 +124,4 @@ const parseMarkdown = (fileContents: string): matter.GrayMatterFile<string> => {
   return matter(fileContents, {
     engines: { yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object },
   })
-}
-
-export async function updateKey(key, value) {
-  const body = value //JSON.stringify(req.query.value)
-  const accountID = "007dc0fad0df7af5af5aebb5ca7cbf18"
-  const namespaceID = "6de583abb4c14a71b925fd188e35d16a"
-
-  const { success, result, errors } = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${accountID}/storage/kv/namespaces/${namespaceID}/values/${key}`,
-    {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${CLOUDFLARE_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body,
-    }
-  ).then((response) => response.json())
-
-  // ...
-}
-export interface KV {
-  key: string
-  value: string
-}
-export async function updateSlugs(kvArray: KV[]) {
-  //   const body = kvArray //JSON.stringify(req.query.value)
-  const accountID = "007dc0fad0df7af5af5aebb5ca7cbf18"
-  const namespaceID = "6de583abb4c14a71b925fd188e35d16a"
-
-  const options = {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${CLOUDFLARE_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(kvArray),
-    // body: '[{"base64":false,"expiration":1578435000,"expiration_ttl":300,"key":"My-Key","metadata":{"someMetadataKey":"someMetadataValue"},"value":"Some string"}]',
-  }
-  const { success, result, errors } = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${accountID}/storage/kv/namespaces/${namespaceID}/bulk`,
-    options
-  ).then((response) => response.json())
-  console.log(result)
-
-  // ...
-}
-
-export async function getIssueBySlug(key): Promise<string> {
-  const accountID = "007dc0fad0df7af5af5aebb5ca7cbf18"
-  const namespaceID = "6de583abb4c14a71b925fd188e35d16a"
-  const options = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${CLOUDFLARE_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-  }
-
-  return await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${accountID}/storage/kv/namespaces/${namespaceID}/values/${key}`,
-    options
-  )
-    .then((response) => response.json())
-    .then((response) => {
-      console.log(response)
-      return response
-    })
-    .catch((err) => {
-      console.error(err)
-      return `Error`
-    })
 }

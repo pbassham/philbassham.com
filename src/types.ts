@@ -45,3 +45,20 @@ export type DynamicProps = {
   allPosts: PostType[]
   category: {}
 }
+
+// for github CMS
+export type CONFIG_TYPE = {
+  PUBLISH_TAG: String
+  IS_ORG: Boolean
+  GITHUB_USERNAME: String
+  PROJECT_NUM: Number
+  REPO: string
+  CLOUDFLARE_ACCOUNT_ID:string
+  CLOUDFLARE_NAMESPACE_ID: string
+}
+
+export type CustomFieldsType = {
+  key: string
+  name: string
+  type: "singleSelect" | "date" | "text" | "number" | "iteration"
+}

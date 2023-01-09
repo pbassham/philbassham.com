@@ -1,49 +1,59 @@
 # Personal portfolio site
+
 - Category pages
   - if there is no category for a post, it goes into the /posts/ url
   - otherwise, there is an index for a category. Example /projects
 - Tags
   - used to tag context of a project. personal, company, etc
 
-# GITHUB CMS
-Uses Github Issues as CMS
+# GitHub Projects as CMS for Next.js site
+
+Uses Github Projects (v2) as CMS. 
+
+#### Features:
+- Issue = Page or Post
+- Category Pages (using custom field in project)
+- Tag Pages using github Labels
+- MDX Components
+- public editing option
+- 
+
 ## Instructions
- - https://giuseppegurgone.com/vercel-cloudflare-kv
- - add env variables to vercel and local
 
+### Github Issues Configuration
 
-# Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and TypeScript
+1. Set publish tag (only Issues with this tag will be published)
+2. (Optional) Set up Issue Templates (For Post Templates, etc)
 
-This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with TypeScript.
+### Github Project Configuration
 
-Next.js and chakra-ui have built-in TypeScript declarations, so we'll get autocompletion for their modules straight away.
+1. Create a Project
+2. Enter the Project Number \_\_\_
+3. Create Custom fields
+   1. Category
+   2. Cover Image
+   3. Publish Date
 
-We are connecting the Next.js `_app.js` with `chakra-ui`'s Provider and theme so the pages can have app-wide dark/light mode. We are also creating some components which shows the usage of `chakra-ui`'s style props.
+### Cloudflare Key-Value Store Configuration
 
-## Deploy your own
+Need to use the KV store of cloudflare (or anywhere else) to convert between slugs and issue IDs because the Github api only allows fetching issues by ID.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-chakra-ui)
+- Instructions: https://giuseppegurgone.com/vercel-cloudflare-kv
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui-typescript&project-name=with-chakra-ui&repository-name=with-chakra-ui)
+### Configure Vercel Environment Variables
 
-## How to use
+1. GITHUB_TOKEN
+2. CLOUDFLARE_TOKEN
 
-### Using `create-next-app`
+### Finally, configure this project
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Example:
 
-```bash
-npx create-next-app --example with-chakra-ui with-chakra-ui-app
-# or
-yarn create next-app --example with-chakra-ui with-chakra-ui-app
-# or
-pnpm create next-app --example with-chakra-ui with-chakra-ui-app
 ```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-## Notes
-
-Chakra has supported Gradients and RTL in `v1.1`. To utilize RTL, [add RTL direction and swap](https://chakra-ui.com/docs/features/rtl-support).
-
-If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl">` inside `_document.ts`.
+{
+  publish_tag:'',
+  org_project:false,
+  username:"", // use Organization username if Organization
+  project_num: 1,
+}
+```
