@@ -28,10 +28,11 @@ export const getStaticProps = async () => {
   // const allPosts = getContent("posts")
   const allPosts = await getPosts(["post"])
   // const { contentX } = getBySlug("pages", "home")
-  const {content} = await getPost('home')
+  const { content } = await getPost("home")
   const mdxSource = await serialize(content)
   // const content = await markdownToHtml(home.content || "")
   return {
     props: { allPosts, source: mdxSource },
+    revalidate: 10,
   }
 }

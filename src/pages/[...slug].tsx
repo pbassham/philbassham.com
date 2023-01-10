@@ -109,6 +109,7 @@ export async function getStaticProps({ params }: Params) {
         },
         source: catPage ? await serialize(catPage.content) : null,
       },
+      revalidate: 10,
     }
   }
   // let post: PostType = null
