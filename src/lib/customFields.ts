@@ -25,10 +25,8 @@ export default function generateCustomFieldsFragment(): string {
         }\n`
     }
   })
-  console.log(fields)
+  // console.log(fields)
   return fields
 }
 
-export function parseCustomFields() {
-    
-}
+export function parseCustomFields() {}

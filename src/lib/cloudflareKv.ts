@@ -6,7 +6,7 @@ const headers = {
 }
 
 /**TODO: Update to use github actions instead of doing it here
- * 
+ *
  */
 
 export async function updateKey(key, value) {
@@ -45,24 +45,27 @@ export async function updateSlugs(kvArray: KV[]): Promise<string> {
 }
 
 export async function getIssueBySlug(key): Promise<string> {
-  const options = {
-    method: "GET",
-    headers,
-  }
+  try {
+    const options = {
+      method: "GET",
+      headers,
+    }
 
-  return await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${CLOUDFLARE_NAMESPACE_ID}/values/${key}`,
-    options
-  )
-    .then((response) => response.json())
-    .then((response) => {
-      console.log(response)
-      return response
-    })
-    .catch((err) => {
-      console.error(err)
-      return `Error`
-    })
+    return await fetch(
+      `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${CLOUDFLARE_NAMESPACE_ID}/values/${key}`,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response)
+        return response
+      })
+    // .catch((err) => {
+    // })
+  } catch (error) {
+    console.error(error)
+    return `Error`
+  }
 }
 export async function getSlugs(): Promise<string> {
   const options = {
