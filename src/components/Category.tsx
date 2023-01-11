@@ -1,14 +1,16 @@
 // @ts-nocheck
+
 import { Hero } from "@components/Hero"
 import Layout from "@components/Layout"
 import PostList from "@components/PostList"
 import { Text, VStack } from "@chakra-ui/react"
 import Meta from "./Meta"
 import { Label, PostType } from "types"
-import { MDXComponents } from "./MDXComponents"
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote"
+// import { MDXComponents } from "./MDXComponents"
+// import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote"
 import PostHeader from "./PostHeader"
 import PostBody from "./PostBody"
+
 // import projects from './projects'
 // FIXME: fix the SEO props on Metadata
 // FIXME: get title without type errors
