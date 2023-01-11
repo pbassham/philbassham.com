@@ -75,6 +75,7 @@ export const getPosts = async (labels: string[]): Promise<PostType[]> => {
       const { data: frontMatter, content } = parseMarkdown(issue.body)
       const category = issue.projectItems.nodes?.[0]?.category?.name || null
       const coverImage = issue.projectItems.nodes?.[0]?.coverImage?.text || null
+      const subTitle = issue.projectItems.nodes?.[0]?.subTitle?.text || null
       const date = issue.projectItems.nodes?.[0]?.date || null
       const tags:Label[] = issue.labels.nodes || null
       return {
@@ -82,6 +83,7 @@ export const getPosts = async (labels: string[]): Promise<PostType[]> => {
         date,
         category,
         coverImage,
+        subTitle,
         slug: slugify(issue.title),
         tags,
         ...(frontMatter as FrontMatter), //allows overriding via frontmatter
@@ -124,6 +126,7 @@ export const getPost = async (slug: string):Promise<PostType> => {
     const { data: frontMatter, content } = parseMarkdown(data.repository.issue.body)
     const category = data.repository.issue.projectItems.nodes?.[0]?.category?.name || null
     const coverImage = data.repository.issue.projectItems.nodes?.[0]?.coverImage?.text || null
+    const subTitle = data.repository.issue.projectItems.nodes?.[0]?.subTitle?.text || null
     const date = data.repository.issue.projectItems.nodes?.[0]?.date || null
     const tags = data.repository.issue.labels.nodes || null
     console.log(data)
@@ -133,6 +136,7 @@ export const getPost = async (slug: string):Promise<PostType> => {
       ...data.repository.issue,
       category,
       coverImage,
+      subTitle,
       date,
       content,
       tags,

@@ -33,6 +33,11 @@ export const customFields: CustomFieldsType[] = [
     name: "Cover Image",
     type: "text",
   },
+  {
+    key: "subTitle",
+    name: "Subtitle",
+    type: "text",
+  },
 ]
 
 export const { PROJECT_NUM, PUBLISH_TAG, GITHUB_USERNAME, REPO, IS_ORG, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_NAMESPACE_ID } = config

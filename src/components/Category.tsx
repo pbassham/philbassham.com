@@ -6,30 +6,33 @@ import Meta from "./Meta"
 import { Label, PostType } from "types"
 import { MDXComponents } from "./MDXComponents"
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote"
+import PostHeader from "./PostHeader"
+import PostBody from "./PostBody"
 // import projects from './projects'
 // FIXME: fix the SEO props on Metadata
 // FIXME: get title without type errors
 // FIXME: get description without error
 // FIXME: the width of the MDX is bad
 const Category = (props: CategoryProps) => {
-  const { allPosts, category, source } = props
-  {/* @ts-ignore */}
-  const title = category?.title || category?.name
-  // const description = category.description
+  const { allPosts, category: post } = props
+  {
+    /* @ts-ignore */
+  }
+  const title = post?.title || post?.name
+  const description = post?.description //|| post?.
   return (
     <Layout>
       {/* @ts-ignore */}
       <Meta title={title} />
-      {/* <VStack minW={"3xl"}> */}
-      <Hero title={title} />
-      {source ? (
-        <MDXRemote {...source} components={MDXComponents} />
-        ) : (
-          <Text fontSize="xl" fontFamily={"mono"}>
-          {/* @ts-ignore */}
-          {category?.description}
-        </Text>
-      )}
+      <PostHeader
+        title={title}
+        coverImage={post.coverImage}
+        date={post.date}
+        author={post.author}
+        subTitle={post.subTitle || description}
+        {...post}
+      />
+      {post?.content ? <PostBody content={post?.content} /> : null}
       {/* </VStack> */}
       <PostList allPosts={allPosts} />
     </Layout>
@@ -38,6 +41,6 @@ const Category = (props: CategoryProps) => {
 export type CategoryProps = {
   allPosts: PostType[]
   category: Label | PostType
-  source?: MDXRemoteSerializeResult
+  // source?: MDXRemoteSerializeResult
 }
 export default Category

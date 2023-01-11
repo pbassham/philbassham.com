@@ -8,15 +8,16 @@ import { getLabels, getPost, getPosts } from "@lib/github"
 import { MDXComponents } from "@components/MDXComponents"
 import { serialize } from "next-mdx-remote/serialize"
 import { MDXRemote } from "next-mdx-remote"
+import PostList from "@components/PostList"
 
 export default function Dynamic(props: DynamicProps) {
   const { type, post, allPosts, category, source } = props
   // return <Post post={post} />
-  // <></>
-  if (type === "page" || type === "post") return <Post post={post} />
+  return <>{type === "category" ? <Category allPosts={allPosts} category={category} /> : <Post post={post} />}</>
+  // if (type === "page" || type === "post") return <Post post={post} />
   // if (isPost) return <Post post={post} />
   // if (content) return <MDXRemote {...content} components={MDXComponents} />
-  if (type === "category") return <Category allPosts={allPosts} category={category} source={source} />
+  // if (type === "category") return <Category allPosts={allPosts} category={category} source={source} />
 }
 
 // export const getStaticProps = async ({ params }) => {
@@ -94,6 +95,7 @@ export async function getStaticProps({ params }: Params) {
     const allPosts = await getPosts([slug[0]])
     const category = labels.filter((label) => label.name === slug[0])?.[0]
     const catPage = await getPost(category.name)
+    const content = catPage?.content ? await serialize(catPage.content) : null
     // if (catPage) {
     // const cat =
     // category.content = await serialize(catPage.content)
@@ -106,8 +108,13 @@ export async function getStaticProps({ params }: Params) {
         category: {
           ...category,
           ...catPage,
+          content,
         },
-        source: catPage ? await serialize(catPage.content) : null,
+        // post: {
+        //   ...catPage,
+        //   content,
+        // },
+        // source: catPage ? await serialize(catPage.content) : null,
       },
       revalidate: 10,
     }
