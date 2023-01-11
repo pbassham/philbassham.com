@@ -76,7 +76,7 @@ const PostList = (props: { allPosts: PostType[] }) => {
                   <Divider />
                 </Container>
               </Box>
-            </Link>
+             </Link>
           )
         })}
     </>

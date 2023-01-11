@@ -5,7 +5,7 @@ import yaml from "js-yaml"
 import { FrontMatter, Label, PostType, Project, ProjectFields } from "types"
 import { getIssueBySlug, updateSlugs } from "./cloudflareKv"
 import { REPO, GITHUB_USERNAME, PROJECT_NUM } from "@root/githubCMS.config"
-import generateCustomFieldsFragment from "./customFields"
+import generateCustomFieldsFragment, { parseCustomFields } from "./customFields"
 const { GITHUB_TOKEN } = process.env
 
 const request = graphql.defaults({
@@ -13,52 +13,24 @@ const request = graphql.defaults({
     authorization: `token ${GITHUB_TOKEN}`,
   },
 })
-let customFieldsFragment = generateCustomFieldsFragment()
+// let customFieldsFragment = generateCustomFieldsFragment().then((res)=>res)
 
 function slugify(text) {
   return text
-    .toString() // Cast to string (optional)
+  .toString() // Cast to string (optional)
     .normalize("NFKD") // The normalize() using NFKD method returns the Unicode Normalization Form of a given string.
     .toLowerCase() // Convert the string to lowercase letters
     .trim() // Remove whitespace from both sides of a string (optional)
     .replace(/\s+/g, "-") // Replace spaces with -
     .replace(/[^\w\-]+/g, "") // Remove all non-word chars
     .replace(/\-\-+/g, "-") // Replace multiple - with single -
-}
-const issueFragment = `title
-				id
-				number
-				createdAt
-				body
-				bodyText
-				bodyHTML 
-				author {
-					url
-				}
-				lastEditedAt
-				bodyUrl
-				milestone {description title state}
-				labels(first: 50) {
-					nodes {
-						name
-						color
-						description
-						id
-					}
-				}
-        projectItems(first: 1) {
-          nodes {
-            project {
-              title
-            }
-            ${customFieldsFragment}
-          }
-        }
-`
+  }
+  
 
 export const getPosts = async (labels: string[]): Promise<PostType[]> => {
   console.log(`Fetched Issues`)
   try {
+    let issueFragment = await generateCustomFieldsFragment()
     const data: GraphQlQueryResponseData = await request(
       `{
       repository(name: "${REPO}", owner: "${GITHUB_USERNAME}") {
@@ -73,17 +45,16 @@ export const getPosts = async (labels: string[]): Promise<PostType[]> => {
     )
     const issues = data.repository.issues.nodes.map((issue) => {
       const { data: frontMatter, content } = parseMarkdown(issue.body)
-      const category = issue.projectItems.nodes?.[0]?.category?.name || null
-      const coverImage = issue.projectItems.nodes?.[0]?.coverImage?.text || null
-      const subTitle = issue.projectItems.nodes?.[0]?.subTitle?.text || null
-      const date = issue.projectItems.nodes?.[0]?.date || null
-      const tags:Label[] = issue.labels.nodes || null
+      
+      const tags: Label[] = issue.labels.nodes || null
+      const customFields = parseCustomFields(issue)
       return {
         ...issue,
-        date,
-        category,
-        coverImage,
-        subTitle,
+        ...customFields,
+        // date,
+        // category,
+        // coverImage,
+        // subTitle,
         slug: slugify(issue.title),
         tags,
         ...(frontMatter as FrontMatter), //allows overriding via frontmatter
@@ -99,7 +70,7 @@ export const getPosts = async (labels: string[]): Promise<PostType[]> => {
 }
 
 // export const getPost = async (number) => {
-export const getPost = async (slug: string):Promise<PostType> => {
+export const getPost = async (slug: string): Promise<PostType> => {
   try {
     if (slug === "site.webmanifest") return
     if (slug === "favicon.ico") return
@@ -108,7 +79,7 @@ export const getPost = async (slug: string):Promise<PostType> => {
     //   const posts = await getPosts()
     //   const number = posts.filter((post) => post.slug === slug)[0]?.number
     const f = 2
-
+    let issueFragment = await generateCustomFieldsFragment()
     const data: GraphQlQueryResponseData = await request(
       `query getPost($number: Int!){
       repository(name: "${REPO}", owner: "${GITHUB_USERNAME}") {
@@ -124,20 +95,19 @@ export const getPost = async (slug: string):Promise<PostType> => {
     )
     // separates frontmatter from the body. allows you to serialize just the body
     const { data: frontMatter, content } = parseMarkdown(data.repository.issue.body)
-    const category = data.repository.issue.projectItems.nodes?.[0]?.category?.name || null
-    const coverImage = data.repository.issue.projectItems.nodes?.[0]?.coverImage?.text || null
-    const subTitle = data.repository.issue.projectItems.nodes?.[0]?.subTitle?.text || null
-    const date = data.repository.issue.projectItems.nodes?.[0]?.date || null
+
+    const customFields = parseCustomFields(data.repository.issue)
     const tags = data.repository.issue.labels.nodes || null
     console.log(data)
 
     // @ts-ignore
     return {
       ...data.repository.issue,
-      category,
-      coverImage,
-      subTitle,
-      date,
+      ...customFields,
+      // category,
+      // coverImage,
+      // subTitle,
+      // date,
       content,
       tags,
       ...(frontMatter as FrontMatter), //allows overriding via frontmatter
@@ -182,7 +152,7 @@ export const getLabels = async (): Promise<Label[]> => {
 `
   )
   const labels = data.repository.labels.nodes
-// console.log(labels);
+  // console.log(labels);
 
   return labels
 }

@@ -2,13 +2,13 @@
 import { GetStaticPaths } from "next"
 import Post from "@components/Post"
 import Category from "@components/Category"
-import meta from "@root/config/meta.json"
+// import meta from "@root/config/meta.json"
 import { DynamicProps, Label, PostType } from "types"
 import { getLabels, getPost, getPosts } from "@lib/github"
-import { MDXComponents } from "@components/MDXComponents"
+// import { MDXComponents } from "@components/MDXComponents"
 import { serialize } from "next-mdx-remote/serialize"
-import { MDXRemote } from "next-mdx-remote"
-import PostList from "@components/PostList"
+// import { MDXRemote } from "next-mdx-remote"
+// import PostList from "@components/PostList"
 
 export default function Dynamic(props: DynamicProps) {
   const { type, post, allPosts, category, source } = props

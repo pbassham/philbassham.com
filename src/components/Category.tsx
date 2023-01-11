@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Hero } from "@components/Hero"
 import Layout from "@components/Layout"
 import PostList from "@components/PostList"
@@ -15,9 +16,7 @@ import PostBody from "./PostBody"
 // FIXME: the width of the MDX is bad
 const Category = (props: CategoryProps) => {
   const { allPosts, category: post } = props
-  {
-    /* @ts-ignore */
-  }
+  {/* @ts-ignore */}
   const title = post?.title || post?.name
   const description = post?.description //|| post?.
   return (

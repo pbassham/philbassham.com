@@ -1,4 +1,4 @@
-import { CONFIG_TYPE, CustomFieldsType } from "types"
+import { CONFIG_TYPE } from "types"
 
 // Config Values
 export const config: CONFIG_TYPE = {
@@ -16,29 +16,47 @@ export const config: CONFIG_TYPE = {
 /**For fields that you add to the project that you want to use on the frontend, add them here.
  * Name is the case-sensitive title of the fields to fetch
  */
+// export const customFields: CustomFieldsType[] = [
+//   {
+//     key: "category",
+//     name: "Category",
+//     type: "singleSelect",
+//   },
+//   {
+//     key: "date",
+//     name: "Publish Date",
+//     type: "date",
+//   },
+//   {
+//     key: "coverImage",
+//     name: "Cover Image",
+//     type: "text",
+//   },
+//   {
+//     key: "subTitle",
+//     name: "Subtitle",
+//     type: "text",
+//   },
+// ]
 
-export const customFields: CustomFieldsType[] = [
-  {
-    key: "category",
-    name: "Category",
-    type: "singleSelect",
-  },
-  {
-    key: "date",
-    name: "Publish Date",
-    type: "date",
-  },
-  {
-    key: "coverImage",
-    name: "Cover Image",
-    type: "text",
-  },
-  {
-    key: "subTitle",
-    name: "Subtitle",
-    type: "text",
-  },
-]
+// export const customFields = {
+//   category: {
+//     name: "Category",
+//     type: "singleSelect",
+//   },
+//   date: {
+//     name: "Publish Date",
+//     type: "date",
+//   },
+//   coverImage: {
+//     name: "Cover Image",
+//     type: "text",
+//   },
+//   subtitle: {
+//     name: "Subtitle",
+//     type: "text",
+//   },
+// }
 
 export const { PROJECT_NUM, PUBLISH_TAG, GITHUB_USERNAME, REPO, IS_ORG, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_NAMESPACE_ID } = config
 

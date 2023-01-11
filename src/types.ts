@@ -1,4 +1,5 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote"
+// import { customFields } from "@root/githubCMS.config"
 
 export interface PostType extends FrontMatter {
   raw: string
@@ -23,7 +24,7 @@ export type FrontMatter = {
   }
   // content: string
   content: MDXRemoteSerializeResult //| string
-  tags: Label[]//string[]
+  tags: Label[] //string[]
   category: string
 }
 
@@ -58,12 +59,6 @@ export type CONFIG_TYPE = {
   CLOUDFLARE_NAMESPACE_ID: string
 }
 
-export type CustomFieldsType = {
-  key: string
-  name: string
-  type: "singleSelect" | "date" | "text" | "number" | "iteration"
-}
-
 export type Label = {
   color: string
   description: string
@@ -91,3 +86,16 @@ export type SelectOptions = {
   id: string
   name: string
 }
+
+// export type CustomFieldsType = {
+//   key: string
+//   name: string
+//   type: ProjectFieldTypes
+// }
+
+// export type ProjectFieldTypes = "singleSelect" | "date" | "text" | "number" | "iteration"
+// type f = typeof customFields[number]['key']
+// type CustomKeys = keyof typeof customFields
+// type CustomValues =  typeof customFields[CustomKeys]
+/**Explain */
+// export type CustomFieldsType = Record<CustomKeys, { name: string; type: ProjectFieldTypes }>

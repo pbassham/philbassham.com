@@ -29,7 +29,7 @@ Uses Github Projects (v2) as CMS.
 
 1. Create a Project
 2. Enter the Project Number \_\_\_
-3. Create Custom fields
+3. Create Custom fields (fields with no space will be used as is, if the name has a space it will turn to camelCase)
    1. Category
    2. Cover Image
    3. Publish Date
