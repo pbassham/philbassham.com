@@ -67,41 +67,12 @@ export default async function generateCustomFieldsFragment(): Promise<string> {
     // camelcase key if there is a space, otherwise, nothing
     const keyName = /\s/g.test(customField.name) ? camalize(customField.name) : customField.name //.toLowerCase().replace(/ /g, "_")
 
-    // const fieldsToGet = customField.dataType === 'TEXT'? `name`
-    // console.log(customField)
-
     const fieldsToGet = getFields(customField)
-    // if (customField.dataType === 'TEXT')
-    // if (customField.dataType === 'DATE')
-    // if (customField.dataType === 'SINGLE_SELECT') {
 
     fields += `${keyName}: fieldValueByName(name:"${customField.name}") {
               
               ${fieldsToGet}
           }\n`
-    // }
-    // }
-    // if (customField.type === "singleSelect") {
-    //   fields += `${customField.key}: fieldValueByName(name:"${customField.name}") {
-    //         ...on ProjectV2ItemFieldSingleSelectValue {
-    //             name
-    //         }
-    //     }\n`
-    // }
-    // if (customField.type === "text") {
-    //   fields += `${customField.key}: fieldValueByName(name:"${customField.name}") {
-    //         ...on ProjectV2ItemFieldTextValue {
-    //             text
-    //         }
-    //     }\n`
-    // }
-    // if (customField.type === "date") {
-    //   fields += `${customField.key}: fieldValueByName(name:"${customField.name}") {
-    //         ...on ProjectV2ItemFieldDateValue {
-    //             date
-    //         }
-    //     }\n`
-    // }
   })
   const issueFragment = `title
   id
@@ -146,18 +117,12 @@ export function parseCustomFields(issue): Record<string, string> {
   // issue.projectItems.nodes[0].category
   const returnFields = {}
   for (const [key, value] of Object.entries(projectFields)) {
-    console.log(`${key}: ${value}`)
+    // console.log(`${key}: ${value}`)
     const val = value?.["date"] || value?.["text"] || value?.["name"] || null
     returnFields[key] = val
   }
-  console.log(returnFields)
+  // console.log(`Custom Fields:`, returnFields)
   return returnFields
-  // projectFields.forEach((field)=>)
-  // customFields.forEach((field) => {
-  //   returnFields[field.key] = projectFields[field.key]?.[field.type] || null
-  // })
-  // return returnFields
-  // return { category, coverImage, subTitle, date, tags }
 }
 function getFields(field): string {
   // let fields = ``
@@ -190,17 +155,4 @@ function getFields(field): string {
   }
   const onField = options[field.dataType]
   return `...on ${onField} {${fetchFields[field.dataType]} }\n`
-  // switch (field.dataType) {
-  //   case "TEXT":
-  //     return `...on ${field.__typename} {text}`
-  //   case "DATE":
-  //     return `...on ${field.__typename} {date}`
-  //   case "SINGLE_SELECT":
-  //     return `...on ${field.__typename} {name}`
-  //   // return `name`
-  //   default:
-  //     return ``
-  // }
-
-  // return fields
 }

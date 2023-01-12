@@ -10,8 +10,8 @@ export default async function handler(req, res) {
     // this should be the actual path not a rewritten path
     // e.g. for "/blog/[slug]" this should be "/blog/post-1"
     await res.revalidate(`/${slug}`)
-    await res.revalidate(`/`)
-    await res.revalidate(`/projects`)
+    await res.revalidate(`/`) // update home page to include new posts
+    await res.revalidate(`/projects`) // update category page
     return res.json({ revalidated: true })
   } catch (err) {
     // If there was an error, Next.js will continue

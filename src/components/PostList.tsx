@@ -47,7 +47,9 @@ const PostList = (props: { allPosts: PostType[] }) => {
                   >
                     {title}
                   </Text>
-                  <Stack direction="row">
+                  <Stack 
+                  // direction="row"
+                  >
                     <Text
                       // fontSize={""}
                       as="em"

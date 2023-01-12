@@ -50,13 +50,14 @@ export type DynamicProps = {
 
 // for github CMS
 export type CONFIG_TYPE = {
-  PUBLISH_TAG: String
+  PUBLISH_TAGS: String[]
   IS_ORG: Boolean
   GITHUB_USERNAME: String
   PROJECT_NUM: Number
   REPO: string
   CLOUDFLARE_ACCOUNT_ID: string
   CLOUDFLARE_NAMESPACE_ID: string
+  HIDE_TAGS: string[]
 }
 
 export type Label = {

@@ -4,7 +4,7 @@ import matter from "gray-matter"
 import yaml from "js-yaml"
 import { FrontMatter, Label, PostType, Project, ProjectFields } from "types"
 import { getIssueBySlug, updateSlugs } from "./cloudflareKv"
-import { REPO, GITHUB_USERNAME, PROJECT_NUM } from "@root/githubCMS.config"
+import config, { REPO, GITHUB_USERNAME, PROJECT_NUM, PUBLISH_TAGS } from "@root/githubCMS.config"
 import generateCustomFieldsFragment, { parseCustomFields } from "./customFields"
 const { GITHUB_TOKEN } = process.env
 
@@ -17,35 +17,44 @@ const request = graphql.defaults({
 
 function slugify(text) {
   return text
-  .toString() // Cast to string (optional)
+    .toString() // Cast to string (optional)
     .normalize("NFKD") // The normalize() using NFKD method returns the Unicode Normalization Form of a given string.
     .toLowerCase() // Convert the string to lowercase letters
     .trim() // Remove whitespace from both sides of a string (optional)
     .replace(/\s+/g, "-") // Replace spaces with -
     .replace(/[^\w\-]+/g, "") // Remove all non-word chars
     .replace(/\-\-+/g, "-") // Replace multiple - with single -
-  }
-  
+}
 
 export const getPosts = async (labels: string[]): Promise<PostType[]> => {
   console.log(`Fetched Issues`)
+  const labelFilter = `label:` + [...PUBLISH_TAGS, ...labels].join(` label:`)
+  // console.log(labelFilter);
+
   try {
     let issueFragment = await generateCustomFieldsFragment()
     const data: GraphQlQueryResponseData = await request(
       `{
-      repository(name: "${REPO}", owner: "${GITHUB_USERNAME}") {
-        issues(first: 50 labels:${JSON.stringify(labels)}) {
+        search(
+        type: ISSUE
+        query: "repo:${GITHUB_USERNAME}/${REPO} ${labelFilter}"
+        first:100
+      ){
           nodes {
-            ${issueFragment}
+            ...on Issue{
+              ${issueFragment}
+            }
           }
       }
     }
-  }
-`
+    `
+      // }
     )
-    const issues = data.repository.issues.nodes.map((issue) => {
+    const i = 1
+    // const issues = data.repository.issues.nodes.map((issue) => {
+    const issues = data.search.nodes.map((issue) => {
       const { data: frontMatter, content } = parseMarkdown(issue.body)
-      
+
       const tags: Label[] = issue.labels.nodes || null
       const customFields = parseCustomFields(issue)
       return {
@@ -98,7 +107,7 @@ export const getPost = async (slug: string): Promise<PostType> => {
 
     const customFields = parseCustomFields(data.repository.issue)
     const tags = data.repository.issue.labels.nodes || null
-    console.log(data)
+    // console.log(data)
 
     // @ts-ignore
     return {
