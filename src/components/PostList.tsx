@@ -22,7 +22,8 @@ const PostList = (props: { allPosts: PostType[] }) => {
           const { slug, category, coverImage, tags, title, subTitle, excerpt } = post
           // if (post.slug === "about") return
           return (
-            <Link href={`/${category || "posts"}/${slug}`} key={slug}>
+            // <Link href={`/${category || "posts"}/${slug}`} key={slug}>
+            <Link href={`/${slug}`} key={slug}>
               <Box pt={8} role="group">
                 {coverImage && (
                   <Image
@@ -46,7 +47,9 @@ const PostList = (props: { allPosts: PostType[] }) => {
                   >
                     {title}
                   </Text>
-                  <Stack direction="row">
+                  <Stack 
+                  // direction="row"
+                  >
                     <Text
                       // fontSize={""}
                       as="em"
@@ -75,7 +78,7 @@ const PostList = (props: { allPosts: PostType[] }) => {
                   <Divider />
                 </Container>
               </Box>
-            </Link>
+             </Link>
           )
         })}
     </>

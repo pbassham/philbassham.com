@@ -1,31 +1,34 @@
 // import Avatar from "./avatar"
-import DateFormatter from "@components/DateFormatter"
-import CoverImage from "@components/CoverImage"
 // import PostTitle from "./PostTitle"
-import { Author, PostType } from "../types"
+import { Author, Label, PostType } from "../types"
 import { Avatar, Badge, Box, Heading } from "@chakra-ui/react"
 import Link from "next/link"
-import meta from "@root/config/meta.json"
+import config from "@root/githubCMS.config"
 
 export type TagsProps = {
-  tags: string[]
+  tags: Label[] // string[]
 }
 
 const Tags = ({ tags }: TagsProps) => {
-  const tagsObj = meta.tags.filter((tag) => tags?.includes(tag.slug))
   return (
     <Box>
-      {tagsObj?.map((tag) => {
-        return (
-          <Link href={`/tag/${tag.slug}`}>
-            <Badge variant="outline" colorScheme="purple" key={tag.slug} mr={2}>
-              {tag.name}
-            </Badge>
-          </Link>
-        )
+      {tags?.map((tag) => {
+        if (config.HIDE_TAGS.includes(tag.name)) return null
+        return <Tag tag={tag} key={tag.id} />
       })}
     </Box>
   )
 }
 
 export default Tags
+
+const Tag = ({ tag }) => {
+  const slug = encodeURIComponent(tag.name)
+  return (
+    <Link href={`/${slug}`} legacyBehavior>
+      <Badge variant="outline" colorScheme="purple" key={tag.name} mr={2}>
+        {tag.name}
+      </Badge>
+    </Link>
+  )
+}
