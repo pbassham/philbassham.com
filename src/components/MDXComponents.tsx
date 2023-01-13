@@ -134,7 +134,7 @@ export const MDXComponents: import("mdx/types").MDXComponents | undefined = {
   h2: (props: HeadingProps): ReactElement => <H as="h2" size="xl" my="1.5rem" {...props} />,
   h3: (props: HeadingProps): ReactElement => <H as="h3" size="lg" my="3rem" {...props} />,
   h4: (props: HeadingProps): ReactElement => <H as="h4" size="lg" my="3rem" {...props} />,
-  p: (props): ReactElement => <Text as="p" lineHeight="1.6" my="1.25rem" {...props} />,
+  p: (props): ReactElement => <Text as="p" lineHeight="1.6" my="1.25rem" px={10} {...props} />,
   // a: (props): ReactElement => <StylishLink {...props} />,
   a: (props): ReactElement => <NextChakraLink href={props?.href} {...props} />,
   ul: (props): ReactElement => <UnorderedList pl={4} {...props} />,
