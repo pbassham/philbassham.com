@@ -1,3 +1,5 @@
+name: Update Cloudflare KV values for issue slugs
+
 on:
   issues:
     types: [opened, edited]
