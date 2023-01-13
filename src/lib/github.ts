@@ -28,7 +28,8 @@ function slugify(text) {
 
 export const getPosts = async (labels: string[]): Promise<PostType[]> => {
   console.log(`Fetched Issues`)
-  const labelFilter = `label:` + [...PUBLISH_TAGS, ...labels].join(` label:`)
+  const arr = [...PUBLISH_TAGS, ...labels]
+  const labelFilter = arr.length ? `label:` + arr?.join(` label:`) : null
   // console.log(labelFilter);
 
   try {

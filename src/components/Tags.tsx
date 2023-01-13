@@ -1,33 +1,36 @@
 // import Avatar from "./avatar"
 // import PostTitle from "./PostTitle"
-import { Author, Label, PostType } from "../types"
-import { Avatar, Badge, Box, Heading } from "@chakra-ui/react"
+import { Label } from "../types"
+import { Badge, BadgeProps, Wrap, WrapProps } from "@chakra-ui/react"
 import Link from "next/link"
 import config from "@root/githubCMS.config"
 
-export type TagsProps = {
+interface TagsProps extends WrapProps {
   tags: Label[] // string[]
+  badgeProps?: BadgeProps
 }
 
-const Tags = ({ tags }: TagsProps) => {
+const Tags = (props: TagsProps) => {
+  const { tags, badgeProps } = props
   return (
-    <Box>
+    <Wrap {...props}>
       {tags?.map((tag) => {
         if (config.HIDE_TAGS.includes(tag.name)) return null
-        return <Tag tag={tag} key={tag.id} />
+        return <Tag tag={tag} key={tag.id} badgeProps={badgeProps} />
       })}
-    </Box>
+    </Wrap>
   )
 }
 
 export default Tags
 
-const Tag = ({ tag }) => {
+const Tag = (props: { tag: Label; badgeProps?: BadgeProps }) => {
+  const { tag } = props
   const slug = encodeURIComponent(tag.name)
   return (
     <Link href={`/${slug}`} legacyBehavior>
-      <Badge variant="outline" colorScheme="purple" key={tag.name} mr={2}>
-        {tag.name}
+      <Badge variant="outline" colorScheme="purple" cursor={"pointer"} key={tag.name} mr={2} {...props.badgeProps}>
+        #{tag.name}
       </Badge>
     </Link>
   )

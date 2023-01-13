@@ -1,7 +1,7 @@
 import { Container, Stack, StackProps } from "@chakra-ui/react"
 
 export const Main = (props: StackProps) => (
-  <Container maxW='4xl'>
+  <Container maxW='4xl' centerContent>
     <Stack
       spacing="1.5rem"
       width="100%"
@@ -10,6 +10,7 @@ export const Main = (props: StackProps) => (
       pt="3rem"
       px="1rem"
       {...props}
-    />
+      />
+      {/* {props.children} */}
   </Container>
 )

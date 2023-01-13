@@ -134,7 +134,9 @@ export const MDXComponents: import("mdx/types").MDXComponents | undefined = {
   h2: (props: HeadingProps): ReactElement => <H as="h2" size="xl" my="1.5rem" {...props} />,
   h3: (props: HeadingProps): ReactElement => <H as="h3" size="lg" my="3rem" {...props} />,
   h4: (props: HeadingProps): ReactElement => <H as="h4" size="lg" my="3rem" {...props} />,
-  p: (props): ReactElement => <Text as="p" lineHeight="1.6" my="1.25rem" px={10} {...props} />,
+  p: (props): ReactElement => <Text as="p" lineHeight="1.6" my="1.25rem" 
+  // px={10} 
+  {...props} />,
   // a: (props): ReactElement => <StylishLink {...props} />,
   a: (props): ReactElement => <NextChakraLink href={props?.href} {...props} />,
   ul: (props): ReactElement => <UnorderedList pl={4} {...props} />,
@@ -155,7 +157,27 @@ export const MDXComponents: import("mdx/types").MDXComponents | undefined = {
   hr: Hr,
   inlineCode: (props): ReactElement => <InlineCode {...props} />,
   blockquote: Blockquote,
-  img: (props): ReactElement => <Image {...props} />,
+  img: (props): ReactElement => <Image 
+  ml={'-50vw'} 
+  // mr={'-50vw'} 
+  borderRadius='xl' 
+  // w='5xl'
+  // w={'4xl'}
+  // maxW={'5xl'}
+  // maxW={'container.sm'}
+  left='48vw'
+  // right='50vw'
+  position={'relative'}
+  
+  // 
+	// margin-left: -50vw;
+	// margin-right: -50vw;
+	// max-width: 100vw;
+	// width: 100vw;
+  // left: 50%;
+	// position: relative;
+	// right: 50%;
+   {...props} />,
   // Small,
   // SideNote,
   // Asterisk,
