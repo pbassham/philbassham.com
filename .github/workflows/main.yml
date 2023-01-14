@@ -2,7 +2,7 @@ name: Update Cloudflare KV values for issue slugs
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, edited, deleted]
 
 jobs:
   update-cloudflare-slug:
@@ -15,6 +15,12 @@ jobs:
       - name: Update Cloudflare Slug
         uses: pbassham/slugify-issue@main # Uses an action in the root directory
         id: update-slug
+        env:
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_TOKEN }}
+          # CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        with:
+          namespace_identifier: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
        # with:
           # who-to-greet: "Mona the Octocat"
           # text: "Mona the Octocat Slug"
@@ -22,25 +28,7 @@ jobs:
           # cloudflare_namespace_id: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
           # cloudflare_token: ${{secrets.CLOUDFLARE_TOKEN}}
 
-      # # Use the output from the `hello` step
-      # - name: Get the output time
-      #   run: echo "The time was ${{ steps.hello.outputs.time }}"
-      #      - name: Add assigness
-      #       uses: actions-cool/issues-helper@v3
-      #      with:
-      #       actions: 'add-assignees'
-      #      token: ${{ secrets.GITHUB_TOKEN }}
-      #     issue-number: ${{ github.event.issue.number }}
-      #    assignees: 'xxx' or 'xx1,xx2'
-      #   random-to: 1
-      # - name: Get Issue
-      #   id: get-issue
-      #   uses: actions-cool/issues-helper@v3
-      #   with:
-      #     actions: "get-issue"
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Check outputs
-      #   run: echo "Outputs issue_number is ${{ steps.get-issue.outputs.issue-number }} and title is ${{ steps.get-issue.outputs.issue-title }}"
+  
       - name: Check outputs
         run: echo "Outputs issue_number is ${{ steps.update-slug.outputs.issue_number }} and title is ${{ steps.update-slug.outputs.slug }}"
       # - name: Link check (critical, all files)
@@ -49,20 +37,21 @@ jobs:
       #       --${{ steps.get-issue.outputs.issue-title }}
       # - name: Value
       #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
-      - name: cloudflare-kv-action
-        uses: zentered/cloudflare-kv-action@v1.0.0
-        id: cloudflare_kv
-        env:
-          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_TOKEN }}
-          # CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        with:
-          namespace_identifier: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
-          key_name: ${{ steps.update-slug.outputs.slug }}
-          value: '${{ steps.update-slug.outputs.issue_number }}'
-      - name: New Value
-        run: echo "${{ steps.cloudflare_kv.outputs.value }}"
-      - name: Revalidate new link via curl
-        run: |
-          curl -X GET "https://www.philbassham.com/api/revalidate?secret${{secrets.REVALIDATE_TOKEN}}&slug=${{steps.update-slug.outputs.slug}}"
+      
+      # - name: cloudflare-kv-action
+      #   uses: zentered/cloudflare-kv-action@v1.0.0
+      #   id: cloudflare_kv
+      #   env:
+      #     CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_TOKEN }}
+      #     # CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
+      #     CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      #   with:
+      #     namespace_identifier: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
+      #     key_name: ${{ steps.update-slug.outputs.slug }}
+      #     value: '${{ steps.update-slug.outputs.issue_number }}'
+      # - name: New Value
+      #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
+      # - name: Revalidate new link via curl
+      #   run: |
+      #     curl -X GET "https://www.philbassham.com/api/revalidate?secret${{secrets.REVALIDATE_TOKEN}}&slug=${{steps.update-slug.outputs.slug}}"
       
