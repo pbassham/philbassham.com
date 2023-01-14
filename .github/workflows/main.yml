@@ -21,6 +21,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         with:
           namespace_identifier: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
+          revalidate_token: ${{secrets.REVALIDATE_TOKEN}}
        # with:
           # who-to-greet: "Mona the Octocat"
           # text: "Mona the Octocat Slug"
@@ -37,7 +38,7 @@ jobs:
       #       --${{ steps.get-issue.outputs.issue-title }}
       # - name: Value
       #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
-      
+
       # - name: cloudflare-kv-action
       #   uses: zentered/cloudflare-kv-action@v1.0.0
       #   id: cloudflare_kv
