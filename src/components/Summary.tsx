@@ -9,7 +9,7 @@ const Summary = (props) => {
   const { children } = props
   return (
     <VStack {...props}>
-      <Container maxW={"90%"}>
+      <Container maxW={"90%"} px={0}>
         <Text  fontSize='xl' fontFamily={"mono"}>
           {children}
         </Text>

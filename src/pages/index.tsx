@@ -23,7 +23,7 @@ const Index = (props: { source: MDXRemoteSerializeResult; allPosts: PostType[]; 
       <Tags
         tags={home?.tags}
         justify="center"
-        px={10}
+        // px={10}
         pb={10}
         spacing="3"
         badgeProps={{

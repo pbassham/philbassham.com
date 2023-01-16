@@ -15,14 +15,16 @@ const links = [
   },
 ]
 const Header = (props: StackProps) => (
-  <HStack as="header" w="100%" maxWidth="5xl" px="1rem" py="2rem" {...props}>
+  <HStack as="header" w="100%" maxWidth="5xl" 
+  // px="1rem" 
+  py="2rem" {...props}>
     <Link href={"/"}>
       <Text fontWeight={"bold"} fontSize="xl" fontStyle="" fontFamily={"mono"} cursor="pointer">
         {config.site_title}
       </Text>
     </Link>
     <Spacer />
-    <HStack className="nav" spacing={5} pl={-1}>
+    <HStack className="nav" spacing={[3,null,5]} pl={-1}>
       {links.map((link) => {
         return (
           <Link href={link.url} key={link.url} passHref legacyBehavior>

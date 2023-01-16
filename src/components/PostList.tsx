@@ -36,7 +36,7 @@ const PostList = (props: { allPosts: PostType[] }) => {
                     //   whileTap={{ scale: 0.97 }}
                   />
                 )}
-                <Container maxW={"90%"}>
+                <Container maxW={"90%"} px={0}>
                   <Text
                     fontSize={"2xl"}
                     cursor={"pointer"}
