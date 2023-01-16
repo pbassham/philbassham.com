@@ -23,8 +23,8 @@ export default function Layout(props: Props) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="apple-touch-icon" href="/icon.png" />
+        {/* <link rel="manifest" href="/site.webmanifest" /> */}
+        {/* <link rel="apple-touch-icon" href="/icon.png" /> */}
         <meta name="theme-color" content="#fff" />
       </Head>
       <Container height="100vh" maxWidth={'5xl'}>
