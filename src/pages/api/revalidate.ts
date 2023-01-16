@@ -1,11 +1,11 @@
 export default async function handler(req, res) {
-  // Check for secret to confirm this is a valid request
-  if (req.query.secret !== process.env.REVALIDATE_TOKEN) {
-    return res.status(401).json({ message: "Invalid token" })
-  }
-
   try {
-    const { slug } = req.query
+    const { slug, secret } = req.query
+    // Check for secret to confirm this is a valid request
+    if (secret !== process.env.REVALIDATE_TOKEN) {
+      return res.status(401).json({ message: "Invalid token" })
+    }
+
     if (!slug) throw `No Slug provided`
     // this should be the actual path not a rewritten path
     // e.g. for "/blog/[slug]" this should be "/blog/post-1"
