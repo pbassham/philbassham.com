@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   try {
     const { slug, secret } = req.query
     // Check for secret to confirm this is a valid request
-    if (secret !== process.env.REVALIDATE_TOKEN) {
+    if (!secret || secret !== process.env.REVALIDATE_TOKEN) {
       return res.status(401).json({ message: "Invalid token" })
     }
 
