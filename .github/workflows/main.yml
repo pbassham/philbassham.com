@@ -21,7 +21,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         with:
           namespace_identifier: ${{secrets.CLOUDFLARE_NAMESPACE_ID}}
-          revalidate_token: ${{secrets.REVALIDATE_TOKEN}}
+          # revalidate_token: ${{secrets.REVALIDATE_TOKEN}}
        # with:
           # who-to-greet: "Mona the Octocat"
           # text: "Mona the Octocat Slug"
@@ -30,8 +30,8 @@ jobs:
           # cloudflare_token: ${{secrets.CLOUDFLARE_TOKEN}}
 
   
-      - name: Check outputs
-        run: echo "Outputs issue_number is ${{ steps.update-slug.outputs.issue_number }} and title is ${{ steps.update-slug.outputs.slug }}"
+      - name: Show Outputs
+        run: echo "Outputs issue_number '${{ steps.update-slug.outputs.issue_number }}' Slug '${{ steps.update-slug.outputs.slug }}'"
       # - name: Link check (critical, all files)
       #   run: |
       #     ./.github/scripts/slugify.js \
@@ -52,7 +52,7 @@ jobs:
       #     value: '${{ steps.update-slug.outputs.issue_number }}'
       # - name: New Value
       #   run: echo "${{ steps.cloudflare_kv.outputs.value }}"
-      # - name: Revalidate new link via curl
-      #   run: |
-      #     curl -X GET "https://www.philbassham.com/api/revalidate?secret${{secrets.REVALIDATE_TOKEN}}&slug=${{steps.update-slug.outputs.slug}}"
+      - name: Revalidate link (via curl / on-demand revalidation)
+        run: |
+          curl -X GET "https://www.philbassham.com/api/revalidate?secret${{secrets.REVALIDATE_TOKEN}}&slug=${{steps.update-slug.outputs.slug}}"
       
