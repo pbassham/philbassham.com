@@ -2,6 +2,7 @@
 // import { CustomFieldsType } from "types"
 import { graphql } from "@octokit/graphql"
 import { GraphQlQueryResponseData } from "@octokit/graphql/dist-types/types"
+import config from "@root/githubCMS.config"
 const { GITHUB_TOKEN } = process.env
 const request = graphql.defaults({
   headers: {

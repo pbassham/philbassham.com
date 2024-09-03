@@ -4,28 +4,28 @@
   - if there is no category for a post, it goes into the /posts/ url
   - otherwise, there is an index for a category. Example /projects
 - Tags
-  - used to tag context of a project. personal, company, etc
+  - Used to tag context of a project. (personal, company, etc.)
 
 # GitHub Projects as CMS for Next.js site
 
-Uses Github Projects (v2) as CMS. 
+Uses GitHub Projects (v2) as CMS. 
 
 #### Features:
 - Issue = Page or Post
-- Category Pages (using custom field in the Github project)
-- Tag Pages using github Labels
+- Category Pages (using custom field in the GitHub project)
+- Tag Pages using GitHub Labels
 - MDX Components
 - public editing option
-- Live updating site without a redeploy to Vercel. Just need to refresh the homepage and it checks for new issues and builds the pages.
+- Live updating site without a redeployment to Vercel. Just need to refresh the homepage, and it checks for new issues and builds the pages.
 
 ## Instructions
 
-### Github Issues Configuration
+### GitHub Issues Configuration
 
 1. Set publish tag (only Issues with this tag will be published)
-2. (Optional) Set up Issue Templates (For Post Templates, etc)
+2. (Optional) Set up Issue Templates (For Post Templates, etc.)
 
-### Github Project Configuration
+### GitHub Project Configuration
 
 1. Create a Project
 2. Enter the Project Number \_\_\_ in the configuration file `githubCMS.config.ts`
@@ -36,7 +36,7 @@ Uses Github Projects (v2) as CMS.
 
 ### Cloudflare Key-Value Store Configuration
 
-Need to use the KV store of cloudflare (or anywhere else) to convert between slugs and issue IDs because the Github api only allows fetching issues by ID.
+Need to use the KV store of cloudflare (or anywhere else) to convert between slugs and issue IDs because the GitHub api only allows fetching issues by ID.
 
 - Instructions: https://giuseppegurgone.com/vercel-cloudflare-kv
 
@@ -57,6 +57,6 @@ Example:
   project_num: 1,
 }
 ```
-### Make a Category Page
-1. Create a new issue in the project and title it the category name (eg. Posts)
+### To Make a Category Page
+1. Create a new issue in the project and title it the category name (e.g. Posts)
 2. Set a subtitle that will show up on the category page as a description.
