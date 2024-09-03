@@ -10,5 +10,13 @@ const NextConfig = {
   experimental: {
     appDir: false,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.githubusercontent.com',
+      },
+    ],
+  },
 }
 module.exports = NextConfig

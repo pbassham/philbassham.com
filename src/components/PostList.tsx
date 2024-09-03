@@ -21,34 +21,26 @@ const PostList = (props: { allPosts: PostType[] }) => {
         morePosts.map((post: PostType) => {
           const { slug, category, coverImage, tags, title, subTitle, excerpt } = post
           // if (post.slug === "about") return
+          // console.log("post", post)
           return (
             // <Link href={`/${category || "posts"}/${slug}`} key={slug}>
             <Link href={`/${slug}`} key={slug}>
-              <Box pt={8} role="group">
-                {coverImage && (
-                  <Image
-                    src={coverImage}
-                    borderRadius={"md"}
-                    cursor="pointer"
-                    as={motion.img}
-                    whileHover={{ scale: 1.01 }}
-                    boxShadow="xl"
-                    //   whileTap={{ scale: 0.97 }}
-                  />
-                )}
-                <Container maxW={"90%"} px={0}>
+              <Box pt={0} role="group">
+                
+                <Container maxW={"90%"} px={0} py={5}>
                   <Text
                     fontSize={"2xl"}
                     cursor={"pointer"}
                     fontWeight="bold"
                     fontFamily={"mono"}
-                    pt={10}
+                    // pt={10}
                     _groupHover={{ fontWeight: "semibold", color: "pink.500" }}
                   >
                     {title}
                   </Text>
                   <Stack 
                   // direction="row"
+                  
                   >
                     <Text
                       // fontSize={""}
@@ -57,26 +49,44 @@ const PostList = (props: { allPosts: PostType[] }) => {
                       //   fontWeight="bold"
                       // fontFamily={"mono"}
                       // fontStyle='italic'
-                      //   py={10}
+                        // pb={10}
                       _groupHover={{ color: "pink.500" }}
                     >
                       {subTitle}
                     </Text>
                     <Tags tags={tags} />
                   </Stack>
-                  <Text
-                    //   fontSize={""}
-                    cursor={"pointer"}
-                    //   fontWeight="bold"
-                    //   fontFamily={"mono"}
-                    pt={3}
-                    pb={10}
-                    //   _groupHover={{  color: "pink.500" }}
-                  >
-                    {excerpt}
-                  </Text>
-                  <Divider />
+                  
+                  
                 </Container>
+                {coverImage && (
+                  <Image
+                    src={coverImage}
+                    borderRadius={"md"}
+                    cursor="pointer"
+                    as={motion.img}
+                    whileHover={{ scale: 1.01 }}
+                    boxShadow="xl"
+                    paddingY={5}
+                    //   whileTap={{ scale: 0.97 }}
+                  />
+                )}
+                {excerpt && (
+                  <Container maxW={"90%"} px={0}>
+                  <Text
+                      //   fontSize={""}
+                      cursor={"pointer"}
+                      //   fontWeight="bold"
+                      //   fontFamily={"mono"}
+                      pt={3}
+                      pb={10}
+                      //   _groupHover={{  color: "pink.500" }}
+                    >
+                      {excerpt}
+                    </Text>
+                  </Container>
+                )}
+                <Divider py={5} />
               </Box>
              </Link>
           )

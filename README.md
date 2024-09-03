@@ -12,11 +12,11 @@ Uses Github Projects (v2) as CMS.
 
 #### Features:
 - Issue = Page or Post
-- Category Pages (using custom field in project)
+- Category Pages (using custom field in the Github project)
 - Tag Pages using github Labels
 - MDX Components
 - public editing option
-- 
+- Live updating site without a redeploy to Vercel. Just need to refresh the homepage and it checks for new issues and builds the pages.
 
 ## Instructions
 
@@ -28,7 +28,7 @@ Uses Github Projects (v2) as CMS.
 ### Github Project Configuration
 
 1. Create a Project
-2. Enter the Project Number \_\_\_
+2. Enter the Project Number \_\_\_ in the configuration file `githubCMS.config.ts`
 3. Create Custom fields (fields with no space will be used as is, if the name has a space it will turn to camelCase)
    1. Category
    2. Cover Image
@@ -57,3 +57,6 @@ Example:
   project_num: 1,
 }
 ```
+### Make a Category Page
+1. Create a new issue in the project and title it the category name (eg. Posts)
+2. Set a subtitle that will show up on the category page as a description.

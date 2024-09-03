@@ -28,9 +28,9 @@ export const Footer = (props: FlexProps) => (
         <IconButton as="a" href={`https://github.com/${config.github_account}`} target="_blank" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
         <IconButton
           as="a"
-          href={`https://twitter.com/${config.twitter_account}`}
+          href={`https://x.com/${config.twitter_account}`}
           target="_blank"
-          aria-label="Twitter"
+          aria-label="X"
           _hover={{
             background: "whiteAlpha.100",
             color: "blue.300",

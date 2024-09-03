@@ -35,6 +35,7 @@ import NextLink from "next/link"
 import { HTMLChakraProps } from "@chakra-ui/system"
 import Summary from "./Summary"
 import { Hero } from "./Hero"
+// import NextImage from "next/image"
 
 const Hr = () => {
   const borderColor = mode("gray.200", "gray.600")
@@ -128,15 +129,36 @@ const Intro = (props) => {
     </Box>
   )
 }
+// import { Image, chakra  } from '@chakra-ui/react';
+// export const ChakraNextImage = (props) => {
+//   const { src, alt, ...rest } = props
+//   return (
+//     <Box position="relative" {...rest}>
+//       <NextImage
+//         objectFit="cover"
+//         // layout="fill"
+//         fill
+//         src={src}
+//         alt={alt}
+//       />
+//     </Box>
+//   )
+// }
 
 export const MDXComponents: import("mdx/types").MDXComponents | undefined = {
   h1: (props: HeadingProps): ReactElement => <H as="h1" size="xl" my="1.25rem" {...props} />,
   h2: (props: HeadingProps): ReactElement => <H as="h2" size="xl" my="1.5rem" {...props} />,
   h3: (props: HeadingProps): ReactElement => <H as="h3" size="lg" my="3rem" {...props} />,
   h4: (props: HeadingProps): ReactElement => <H as="h4" size="lg" my="3rem" {...props} />,
-  p: (props): ReactElement => <Text as="p" lineHeight="1.6" my="1.25rem" 
-  // px={10} 
-  {...props} />,
+  p: (props): ReactElement => (
+    <Text
+      as="p"
+      lineHeight="1.6"
+      my="1.25rem"
+      // px={10}
+      {...props}
+    />
+  ),
   // a: (props): ReactElement => <StylishLink {...props} />,
   a: (props): ReactElement => <NextChakraLink href={props?.href} {...props} />,
   ul: (props): ReactElement => <UnorderedList pl={4} {...props} />,
@@ -157,27 +179,21 @@ export const MDXComponents: import("mdx/types").MDXComponents | undefined = {
   hr: Hr,
   inlineCode: (props): ReactElement => <InlineCode {...props} />,
   blockquote: Blockquote,
-  img: (props): ReactElement => <Image 
-  ml={'-50vw'} 
-  // mr={'-50vw'} 
-  borderRadius='xl' 
-  // w='5xl'
-  // w={'4xl'}
-  // maxW={'5xl'}
-  // maxW={'container.sm'}
-  left='48vw'
-  // right='50vw'
-  position={'relative'}
-  
-  // 
-	// margin-left: -50vw;
-	// margin-right: -50vw;
-	// max-width: 100vw;
-	// width: 100vw;
-  // left: 50%;
-	// position: relative;
-	// right: 50%;
-   {...props} />,
+  img: (props): ReactElement => (
+    <Image
+      ml={"-50vw"}
+      borderRadius="xl"
+      left="48vw"
+      // right='50vw'
+      position={"relative"}
+      // mr={'-50vw'}
+      // w='5xl'
+      // w={'4xl'}
+      // maxW={'5xl'}
+      // maxW={'container.sm'}
+      {...props}
+    />
+  ),
   // Small,
   // SideNote,
   // Asterisk,
