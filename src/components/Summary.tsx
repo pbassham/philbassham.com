@@ -15,6 +15,11 @@ const Summary = (props) => {
         </Text>
       </Container>
     </VStack>
+<style>{`
+        @keyframes blink {
+          50% { opacity: 0; }
+        }
+      `}</style>
   )
 }
 
