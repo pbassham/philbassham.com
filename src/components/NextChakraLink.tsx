@@ -17,7 +17,7 @@ export const NextChakraLink = ({ href, as, replace, scroll, shallow, prefetch, .
         // color="HighlightText"
         color={mode("gray.900", "gray.100")}
         // bg={}
-        background={`linear-gradient(180deg, rgba(255,255,255,0) 65%,  ${mode('#FFD0AE','#744210')} 65%);`}
+        background={`linear-gradient(180deg, rgba(255,255,255,0) 65%,  ${mode('#FFD0AE','#976626')} 75%);`}
         // backgroundColor={mode("orange.100", "yellow.900")}
         {...chakraProps}
       />

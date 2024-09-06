@@ -1,5 +1,5 @@
 // import Container from "@components/Container"
-import { Center, Container } from "@chakra-ui/react"
+import { Center, Container, Heading, Highlight } from "@chakra-ui/react"
 import Layout from "@components/Layout"
 import { MDXComponents } from "@components/MDXComponents"
 import Meta from "@components/Meta"
@@ -18,8 +18,12 @@ const Index = (props: { source: MDXRemoteSerializeResult; allPosts: PostType[]; 
       {/* <Hero title="I’m a product manager currently at MissionBase." /> */}
       {/* @ts-ignore */}
       <Meta title="Home" />
+      <Heading as='h1' size='3xl' mt='8' fontWeight='extrabold'>
+          <Highlight query="I'm Philip," styles={{bg:'purple.300'}}>
+            Hi, I'm Philip, and this is some of my work.
+          </Highlight>
+      </Heading>
       <MDXRemote {...source} components={MDXComponents} />
-
       <Tags
         tags={home?.tags}
         justify="center"
