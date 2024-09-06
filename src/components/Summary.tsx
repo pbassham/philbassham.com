@@ -8,6 +8,7 @@ import PostList from "@components/PostList"
 const Summary = (props) => {
   const { children } = props
   return (
+<>
     <VStack {...props}>
       <Container maxW={"90%"} px={0}>
         <Text  fontSize='xl' fontFamily={"mono"}>
@@ -20,6 +21,7 @@ const Summary = (props) => {
           50% { opacity: 0; }
         }
       `}</style>
+</>
   )
 }
 
