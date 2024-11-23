@@ -19,7 +19,7 @@ const Index = (props: { source: MDXRemoteSerializeResult; allPosts: PostType[]; 
       {/* @ts-ignore */}
       <Meta title="Home" />
       <Heading as='h1' size='3xl' mt='8' fontWeight='extrabold'>
-          <Highlight query="I'm Philip," styles={{bg:'purple.300'}}>
+          <Highlight query="I'm Philip" styles={{bg:'purple.300'}}>
             Hi, I'm Philip, and this is some of my work.
           </Highlight>
       </Heading>
