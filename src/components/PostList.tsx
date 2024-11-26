@@ -67,7 +67,7 @@ const PostList = (props: { allPosts: PostType[] }) => {
                     as={motion.img}
                     whileHover={{ scale: 1.01 }}
                     boxShadow="xl"
-                    paddingY={5}
+                    marginY={5}
                     //   whileTap={{ scale: 0.97 }}
                   />
                 )}
