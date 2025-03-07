@@ -2,7 +2,7 @@
 // import { CustomFieldsType } from "types"
 import { graphql } from "@octokit/graphql"
 import { GraphQlQueryResponseData } from "@octokit/graphql/dist-types/types"
-import config from "@root/githubCMS.config"
+import config, { GITHUB_USERNAME } from "@root/githubCMS.config"
 const { GITHUB_TOKEN } = process.env
 const request = graphql.defaults({
   headers: {
@@ -14,7 +14,7 @@ var camalize = function camalize(str) {
 }
 export default async function generateCustomFieldsFragment(): Promise<string> {
   const data: GraphQlQueryResponseData = await request(`{
-    user(login: "pbassham") {
+    user(login: "${GITHUB_USERNAME}") {
       projectV2(number: 4) {
         title
         shortDescription
@@ -58,6 +58,8 @@ export default async function generateCustomFieldsFragment(): Promise<string> {
     if (field.dataType === "REPOSITORY") return false
     if (field.dataType === "MILESTONE") return false
     if (field.dataType === "ITERATION") return false
+    if (field.dataType === "PARENT_ISSUE") return false
+    if (field.dataType === "SUB_ISSUES_PROGRESS") return false
     // if (field.dataType === '') return false
     return true
   })
